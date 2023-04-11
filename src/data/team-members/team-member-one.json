@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "image": "https://serigrafgrosseto.com/wp-content/uploads/2020/05/FRANCO.png",
+    "fbLink": "//www.facebook.com",
+    "twitterLink": "//www.twitter.com",
+    "instagramLink": "//www.instagram.com",
+    "name": "Mr.Arif",
+    "position": "Manager"
+  },
+  {
+    "id": "2",
+    "image": "https://serigrafgrosseto.com/wp-content/uploads/2021/04/cristian.jpg",
+    "fbLink": "//www.facebook.com",
+    "twitterLink": "//www.twitter.com",
+    "instagramLink": "//www.instagram.com",
+    "name": "Mr.Rofik",
+    "position": "Developer"
+  },
+  {
+    "id": "3",
+    "image": "https://serigrafgrosseto.com/wp-content/uploads/2020/05/DANI.png",
+    "fbLink": "//www.facebook.com",
+    "twitterLink": "//www.twitter.com",
+    "instagramLink": "//www.instagram.com",
+    "name": "Mr.shofik",
+    "position": "Designer"
+  },
+  {
+    "id": "4",
+    "image": "https://serigrafgrosseto.com/wp-content/uploads/2020/05/ELENA.png",
+    "fbLink": "//www.facebook.com",
+    "twitterLink": "//www.twitter.com",
+    "instagramLink": "//www.instagram.com",
+    "name": "Mr.Zarif",
+    "position": "Chairman"
+  }
+]

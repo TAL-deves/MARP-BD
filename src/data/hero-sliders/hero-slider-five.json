@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "title": "Natural & Healthy",
+    "subtitle": "100% Organic Fruits Collection",
+    "image": "https://st2.depositphotos.com/1013886/5744/i/450/depositphotos_57444285-Healthy-food-background.jpg",
+    "url": "/shop-grid-standard"
+  },
+  {
+    "id": 2,
+    "title": "Natural & Healthy",
+    "subtitle": "100% Organic Veg Collection",
+    "image": "https://media.istockphoto.com/id/525985965/photo/healthy-food-background.jpg?s=612x612&w=0&k=20&c=FAB3rg2oJ1vLDx0xE9TAiNCpdht2jMcqqXbrtstZ7Y4=",
+    "url": "/shop-grid-standard"
+  }
+]

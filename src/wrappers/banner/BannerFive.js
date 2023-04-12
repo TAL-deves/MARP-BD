@@ -23,7 +23,7 @@ const BannerFive = () => {
                   <div className="banner-content-3 banner-position-hm15-1">
                     <h3>Green Apple </h3>
                     <p>
-                      Starting At <span>$99.00</span>
+                      Starting At <span>৳199.00</span>
                     </p>
                     <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
                       <i className="fa fa-long-arrow-right" />
@@ -46,7 +46,7 @@ const BannerFive = () => {
                   <div className="banner-content-3 banner-position-hm15-1">
                     <h3>Ripe orange</h3>
                     <p>
-                      Starting At <span>$99.00</span>
+                      Starting At <span>৳99.00</span>
                     </p>
                     <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
                       <i className="fa fa-long-arrow-right" />
@@ -94,7 +94,7 @@ const BannerFive = () => {
                   <div className="banner-content-3 banner-position-hm15-2">
                     <h3>Ripe Corn </h3>
                     <p>
-                      Starting At <span>$99.00</span>
+                      Starting At <span>৳99.00</span>
                     </p>
                     <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
                       <i className="fa fa-long-arrow-right" />
@@ -117,7 +117,7 @@ const BannerFive = () => {
                   <div className="banner-content-3 banner-position-hm15-2">
                     <h3>Green guava </h3>
                     <p>
-                      Starting At <span>$99.00</span>
+                      Starting At <span>৳99.00</span>
                     </p>
                     <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
                       <i className="fa fa-long-arrow-right" />

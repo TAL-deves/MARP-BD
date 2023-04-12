@@ -24,19 +24,19 @@ const ShopSidebar = ({ products, getSortParams, sideSpaceClass }) => {
       <ShopSearch />
 
       {/* filter by categories */}
-      <ShopCategories
+      {/* <ShopCategories
         categories={uniqueCategories}
         getSortParams={getSortParams}
-      />
+      /> */}
 
       {/* filter by color */}
-      <ShopColor colors={uniqueColors} getSortParams={getSortParams} />
+      {/* <ShopColor colors={uniqueColors} getSortParams={getSortParams} /> */}
 
       {/* filter by size */}
-      <ShopSize sizes={uniqueSizes} getSortParams={getSortParams} />
+      {/* <ShopSize sizes={uniqueSizes} getSortParams={getSortParams} /> */}
 
       {/* filter by tag */}
-      <ShopTag tags={uniqueTags} getSortParams={getSortParams} />
+      {/* <ShopTag tags={uniqueTags} getSortParams={getSortParams} /> */}
     </div>
   );
 };

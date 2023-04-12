@@ -108,7 +108,7 @@ const ProductGridSingleTwo = ({
               <i className="fa fa-eye"></i>
             </button>
 
-            <button
+            {/* <button
               className={compareItem !== undefined ? "active" : ""}
               disabled={compareItem !== undefined}
               title={
@@ -119,7 +119,7 @@ const ProductGridSingleTwo = ({
               onClick={() => dispatch(addToCompare(product))}
             >
               <i className="fa fa-retweet"></i>
-            </button>
+            </button> */}
           </div>
         </div>
         <div className="product-content-2">
@@ -148,7 +148,7 @@ const ProductGridSingleTwo = ({
               )}
             </div>
           </div>
-          <div className="pro-wishlist-2">
+          {/* <div className="pro-wishlist-2">
             <button
               className={wishlistItem !== undefined ? "active" : ""}
               disabled={wishlistItem !== undefined}
@@ -161,7 +161,7 @@ const ProductGridSingleTwo = ({
             >
               <i className="fa fa-heart-o" />
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
       {/* product modal */}

@@ -33,20 +33,20 @@ const Career = () => {
                     ]}
                 />
 
-                <Container className="mt-5">
-                    <Row>
+                <Container className="mt-5 d-flex flex-column justify-content-center align-items-center">
+                    <Row  className="text-center">
                         <Col>
                             <h1>Career Opportunities</h1>
-                            <p>We are always looking for talented individuals to join our team.</p>
-                            <p>If you are interested in working with us, please submit your CV using the form below.</p>
+                            <p>We don't have any openings right now. <br/>Please drop your CV down below, we will contact with you if there is any opportunity for you.</p>
+                           
                         </Col>
                     </Row>
-                    <Row>
+                    <Row className="text-center">
                         <Col>
-                            <div className="button-box w-50">
+                            <div className="button-box">
                                 <div className="login-toggle-btn">
                                     <form onSubmit={handleSubmit}>
-                                        <input
+                                        {/* <input
                                             className="m-3"
                                             type="text"
                                             name="user-name"
@@ -57,7 +57,7 @@ const Career = () => {
                                             type="email"
                                             name="user-email"
                                             placeholder="Enter Your Email"
-                                        />
+                                        /> */}
                                         <input
                                             className="m-3"
                                             name="user-cv"
@@ -66,7 +66,7 @@ const Career = () => {
                                         />
                                         <div className="button-box m-3">
                                             <button type="submit" className="btn btn-secondary">
-                                                <span>Register</span>
+                                                <span>Submit</span>
                                             </button>
                                         </div>
                                     </form>

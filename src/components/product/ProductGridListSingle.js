@@ -136,9 +136,11 @@ const ProductGridListSingle = ({
             <div className="product-price">
               {discountedPrice !== null ? (
                 <Fragment>
-                  <span>{currency.currencySymbol + finalDiscountedPrice}</span>{" "}
+                  {/* <span>{currency.currencySymbol + finalDiscountedPrice}</span>{" "} */}
+                  <span>৳{finalDiscountedPrice}</span>{" "}
                   <span className="old">
-                    {currency.currencySymbol + finalProductPrice}
+                    {/* {currency.currencySymbol + finalProductPrice} */}
+                    ৳{finalProductPrice}
                   </span>
                 </Fragment>
               ) : (

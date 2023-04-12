@@ -11,7 +11,7 @@ const MobileNavMenu = () => {
           <Link to={process.env.PUBLIC_URL + "/"}>{t("home")}</Link>          
         </li>
         <li>
-          <Link to={process.env.PUBLIC_URL + "/about"}>{t("About")}</Link>          
+          <Link to={process.env.PUBLIC_URL + "/about"}>{t("about")}</Link>          
         </li>
 
         <li>
@@ -20,7 +20,7 @@ const MobileNavMenu = () => {
           </Link>
         </li>
         <li>
-          <Link to={process.env.PUBLIC_URL + "/career"}>{t("Career")}</Link>          
+          <Link to={process.env.PUBLIC_URL + "/career"}>{t("career")}</Link>          
         </li>
         <li>
           <Link to={process.env.PUBLIC_URL + "/contact"}>

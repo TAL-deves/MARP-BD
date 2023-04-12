@@ -3,10 +3,24 @@ import { useLocation } from "react-router-dom";
 import SEO from "../../components/seo";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
-import GoogleMap from "../../components/google-map"
+import GoogleMap from "../../components/google-map";
+import api from "../../api/api"
+import { useEffect } from "react";
 
 const Contact = () => {
   let { pathname } = useLocation();
+
+  const fetchData = async () => {
+    try {
+      let postdata = { data: "test" }; 
+      // const data = await api("POST", "http://localhost:5000/", postdata);
+      const data = await api("GET", "http://192.168.68.103:5000/", postdata);
+      console.log(data);
+    } catch (error) {
+      alert(`Error: ${error.code}\nMessage: ${error.message}`);
+    }
+  };
+
 
   return (
     <Fragment>
@@ -123,7 +137,8 @@ const Contact = () => {
                           placeholder="Your Message*"
                           defaultValue={""}
                         />
-                        <button className="submit" type="submit">
+                        <button className="submit" onClick={(e)=>{e.preventDefault()
+                        fetchData()}}>
                           SEND
                         </button>
                       </div>

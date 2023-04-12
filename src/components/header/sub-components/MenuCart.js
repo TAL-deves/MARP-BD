@@ -53,9 +53,13 @@ const MenuCart = () => {
                     </h4>
                     <h6>Qty: {item.quantity}</h6>
                     <span>
-                      {discountedPrice !== null
+                      {/* {discountedPrice !== null
                         ? currency.currencySymbol + finalDiscountedPrice
-                        : currency.currencySymbol + finalProductPrice}
+                        : currency.currencySymbol + finalProductPrice} */}
+                        {discountedPrice !== null
+                        ? 
+                        <>৳{ finalDiscountedPrice}</>
+                        : <>৳{ finalProductPrice}</>}
                     </span>
                     {item.selectedProductColor &&
                     item.selectedProductSize ? (
@@ -80,7 +84,8 @@ const MenuCart = () => {
             <h4>
               Total :{" "}
               <span className="shop-total">
-                {currency.currencySymbol + cartTotalPrice.toFixed(2)}
+                {/* {currency.currencySymbol + cartTotalPrice.toFixed(2)} */}
+                ৳{ cartTotalPrice.toFixed(2)}
               </span>
             </h4>
           </div>

@@ -43,13 +43,16 @@ const ProductDescriptionInfo = ({
       <div className="product-details-price">
         {discountedPrice !== null ? (
           <Fragment>
-            <span>{currency.currencySymbol + finalDiscountedPrice}</span>{" "}
+            {/* <span>{currency.currencySymbol + finalDiscountedPrice}</span>{" "} */}
+            <span>৳{finalDiscountedPrice}</span>{" "}
             <span className="old">
-              {currency.currencySymbol + finalProductPrice}
+              {/* {currency.currencySymbol + finalProductPrice} */}
+              ৳{finalProductPrice}
             </span>
           </Fragment>
         ) : (
-          <span>{currency.currencySymbol + finalProductPrice} </span>
+          // <span>{currency.currencySymbol + finalProductPrice} </span>
+          <span>৳{finalProductPrice} </span>
         )}
       </div>
       {product.rating && product.rating > 0 ? (

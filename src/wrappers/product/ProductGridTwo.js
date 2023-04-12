@@ -4,8 +4,7 @@ import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { getProducts } from "../../helpers/product";
 import ProductGridSingleTwo from "../../components/product/ProductGridSingleTwo";
-import api from "../../api/Axios"
-import axios from "axios";
+
 const ProductGridTwo = ({
   spaceBottomClass,
   colorClass,

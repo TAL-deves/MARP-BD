@@ -35,6 +35,7 @@ const MobileLangCurrChange = () => {
           onChange={changeLanguageTrigger}
         >
           <option value="en">English</option>
+          <option value="bn">Bengali</option>
           <option value="fn">French</option>
           <option value="de">Germany</option>
         </select>

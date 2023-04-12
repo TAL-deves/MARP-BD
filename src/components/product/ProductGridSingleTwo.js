@@ -8,7 +8,7 @@ import ProductModal from "./ProductModal";
 import { addToCart } from "../../store/slices/cart-slice";
 import { addToWishlist } from "../../store/slices/wishlist-slice";
 import { addToCompare } from "../../store/slices/compare-slice";
-import api from "../../api/Axios"
+
 
 const ProductGridSingleTwo = ({
   product,
@@ -137,14 +137,17 @@ const ProductGridSingleTwo = ({
               {discountedPrice !== null ? (
                 <Fragment>
                   <span>
-                    {currency.currencySymbol + finalDiscountedPrice}
+                    {/* {currency.currencySymbol + finalDiscountedPrice} */}
+                    ৳{finalDiscountedPrice}
                   </span>{" "}
                   <span className="old">
-                    {currency.currencySymbol + finalProductPrice}
+                    {/* {currency.currencySymbol + finalProductPrice} */}
+                    ৳{finalProductPrice}
                   </span>
                 </Fragment>
               ) : (
-                <span>{currency.currencySymbol + finalProductPrice} </span>
+                // <span>{currency.currencySymbol + finalProductPrice} </span>
+                <span>৳{finalProductPrice} </span>
               )}
             </div>
           </div>

@@ -36,7 +36,7 @@ const Contact = () => {
   const fetchData = async () => {
     try {
       let postdata = { name: name,email: mail,subject: subject,message: message}; 
-      const data = await api("POST", "http://192.168.68.103:5000/email", postdata);
+      const data = await api("POST", "https://marpbangladeshapi.up.railway.app:5000/email", postdata);
       // console.log(data);
       setName("");
       setMail("");

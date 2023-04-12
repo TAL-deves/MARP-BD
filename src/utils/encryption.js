@@ -10,7 +10,7 @@ const iv = CryptoJS.enc.Utf8.parse(IV);
 
 // Encryption function
 const encryptData = (data) => {
-  console.log("data ----- ", data);
+//   console.log("data ----- ", data);
   const response = JSON.stringify(data);
 
   // Encrypt the request body using AES encryption
@@ -22,7 +22,7 @@ const encryptData = (data) => {
 
   // Convert the encrypted data to a Base64-encoded string
   const encryptedBase64 = encrypted.ciphertext.toString(CryptoJS.enc.Base64);
-  console.log("encryptedBase64 ----- ", encryptedBase64);
+//   console.log("encryptedBase64 ----- ", encryptedBase64);
   return encryptedBase64;
 };
 

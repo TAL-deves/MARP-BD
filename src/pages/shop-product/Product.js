@@ -12,8 +12,7 @@ const Product = () => {
   let { pathname } = useLocation();
   let { id } = useParams();
   const { products } = useSelector((state) => state.product);
-  const product = products.find(product => product.id === id);
-  
+  const product = products.find(product => product.id === parseInt(id));
 
   return (
     <Fragment>
@@ -32,23 +31,27 @@ const Product = () => {
         />
 
         {/* product description with image */}
+        {product && product.price?
         <ProductImageDescription
           spaceTopClass="pt-100"
           spaceBottomClass="pb-100"
           product={product}
-        />
+        />:<></>}
 
         {/* product description tab */}
+        {product && product.fullDescription?
         <ProductDescriptionTab
           spaceBottomClass="pb-90"
           productFullDesc={product.fullDescription}
-        />
+        />:<></>}
 
         {/* related product slider */}
+        {product && product.fullDescription?
         <RelatedProductSlider
           spaceBottomClass="pb-95"
           category={product.category[0]}
         />
+        :<></>}
       </LayoutOne>
     </Fragment>
   );

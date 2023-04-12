@@ -6,16 +6,42 @@ import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import GoogleMap from "../../components/google-map";
 import api from "../../api/api"
 import { useEffect } from "react";
+import { useSSR } from "react-i18next";
+import { useState } from "react";
 
 const Contact = () => {
   let { pathname } = useLocation();
+   const [name, setName]= useState('')
+   const [mail, setMail]= useState('')
+   const [subject, setSubject]= useState('')
+   const [message, setMessage]= useState('')
+
+
+   const handleName = (event) => {
+    setName(event.target.value);
+  }
+
+  const handleMail = (event) => {
+    setMail(event.target.value);
+  }
+
+  const handleSubject = (event) => {
+    setSubject(event.target.value);
+  }
+
+  const handleMessage = (event) => {
+    setMessage(event.target.value);
+  }
 
   const fetchData = async () => {
     try {
-      let postdata = { data: "test" }; 
-      // const data = await api("POST", "http://localhost:5000/", postdata);
-      const data = await api("GET", "http://192.168.68.103:5000/", postdata);
-      console.log(data);
+      let postdata = { name: name,email: mail,subject: subject,message: message}; 
+      const data = await api("POST", "http://192.168.68.103:5000/email", postdata);
+      // console.log(data);
+      setName("");
+      setMail("");
+      setSubject("");
+      setMessage("");
     } catch (error) {
       alert(`Error: ${error.code}\nMessage: ${error.message}`);
     }
@@ -119,16 +145,18 @@ const Contact = () => {
                   <form className="contact-form-style">
                     <div className="row">
                       <div className="col-lg-6">
-                        <input name="name" placeholder="Name*" type="text" />
+                        <input name="name" placeholder="Name*" value={name} onChange={handleName} type="text" />
                       </div>
                       <div className="col-lg-6">
-                        <input name="email" placeholder="Email*" type="email" />
+                        <input name="email" placeholder="Email*" value={mail}type="email" onChange={handleMail} />
                       </div>
                       <div className="col-lg-12">
                         <input
                           name="subject"
                           placeholder="Subject*"
                           type="text"
+                          value={subject}
+                          onChange={handleSubject}
                         />
                       </div>
                       <div className="col-lg-12">
@@ -136,6 +164,8 @@ const Contact = () => {
                           name="message"
                           placeholder="Your Message*"
                           defaultValue={""}
+                          value={message}
+                          onChange={handleMessage}
                         />
                         <button className="submit" onClick={(e)=>{e.preventDefault()
                         fetchData()}}>

@@ -8,11 +8,14 @@
         "new": false,
         "rating": 4,
         "saleCount": 20,
-        "category": [
-            "organic food"
-        ],
+        "category": {
+            "name": "Electronics"
+        },
+        "subcategory": {
+            "name": "USB"
+        },
         "tag": [
-            "organic food"
+            "honulu1"
         ],
         "stock": 24,
         "image": [
@@ -30,9 +33,12 @@
         "new": false,
         "rating": 4,
         "saleCount": 14,
-        "category": [
-            "organic food"
-        ],
+        "category": {
+            "name": "Electronics"
+        },
+        "subcategory": {
+            "name": "USB"
+        },
         "tag": [
             "organic food"
         ],
@@ -52,9 +58,12 @@
         "new": true,
         "rating": 4,
         "saleCount": 20,
-        "category": [
-            "organic food"
-        ],
+        "category": {
+            "name": "Electronics"
+        },
+        "subcategory": {
+            "name": "USB"
+        },
         "tag": [
             "organic food"
         ],
@@ -74,9 +83,12 @@
         "new": false,
         "rating": 4,
         "saleCount": 20,
-        "category": [
-            "organic food"
-        ],
+        "category": {
+            "name": "Electronics"
+        },
+        "subcategory": {
+            "name": "USB"
+        },
         "tag": [
             "organic food"
         ],
@@ -96,9 +108,12 @@
         "new": true,
         "rating": 4,
         "saleCount": 14,
-        "category": [
-            "organic food"
-        ],
+        "category": {
+            "name": "Electronics"
+        },
+        "subcategory": {
+            "name": "USB"
+        },
         "tag": [
             "organic food"
         ],
@@ -118,9 +133,12 @@
         "new": true,
         "rating": 3,
         "saleCount": 20,
-        "category": [
-            "organic food"
-        ],
+        "category": {
+            "name": "Electronics"
+        },
+        "subcategory": {
+            "name": "USB"
+        },
         "tag": [
             "organic food"
         ],
@@ -140,9 +158,12 @@
         "new": true,
         "rating": 4,
         "saleCount": 18,
-        "category": [
-            "organic food"
-        ],
+        "category": {
+            "name": "Electronics"
+        },
+        "subcategory": {
+            "name": "USB"
+        },
         "tag": [
             "organic food"
         ],
@@ -162,9 +183,12 @@
         "new": false,
         "rating": 2,
         "saleCount": 10,
-        "category": [
-            "organic food"
-        ],
+        "category": {
+            "name": "Electronics"
+        },
+        "subcategory": {
+            "name": "USB"
+        },
         "tag": [
             "organic food"
         ],
@@ -184,9 +208,12 @@
         "new": false,
         "rating": 4,
         "saleCount": 13,
-        "category": [
-            "organic food"
-        ],
+        "category": {
+            "name": "Electronics"
+        },
+        "subcategory": {
+            "name": "USB"
+        },
         "tag": [
             "organic food"
         ],
@@ -206,9 +233,12 @@
         "new": true,
         "rating": 3,
         "saleCount": 17,
-        "category": [
-            "organic food"
-        ],
+        "category": {
+            "name": "Electronics"
+        },
+        "subcategory": {
+            "name": "USB"
+        },
         "tag": [
             "organic food"
         ],
@@ -228,9 +258,12 @@
         "new": false,
         "rating": 1,
         "saleCount": 11,
-        "category": [
-            "organic food"
-        ],
+        "category": {
+            "name": "Electronics"
+        },
+        "subcategory": {
+            "name": "USB"
+        },
         "tag": [
             "organic food"
         ],
@@ -250,9 +283,12 @@
         "new": true,
         "rating": 3,
         "saleCount": 15,
-        "category": [
-            "organic food"
-        ],
+        "category": {
+            "name": "Electronics"
+        },
+        "subcategory": {
+            "name": "USB"
+        },
         "tag": [
             "organic food"
         ],
@@ -272,9 +308,12 @@
         "new": true,
         "rating": 1,
         "saleCount": 16,
-        "category": [
-            "organic food"
-        ],
+        "category": {
+            "name": "Electronics"
+        },
+        "subcategory": {
+            "name": "USB"
+        },
         "tag": [
             "organic food"
         ],
@@ -294,9 +333,12 @@
         "new": true,
         "rating": 5,
         "saleCount": 13,
-        "category": [
-            "organic food"
-        ],
+        "category": {
+            "name": "Electronics"
+        },
+        "subcategory": {
+            "name": "USB"
+        },
         "tag": [
             "organic food"
         ],
@@ -316,9 +358,12 @@
         "new": false,
         "rating": 1,
         "saleCount": 16,
-        "category": [
-            "organic food"
-        ],
+        "category": {
+            "name": "Electronics"
+        },
+        "subcategory": {
+            "name": "USB"
+        },
         "tag": [
             "organic food"
         ],
@@ -338,9 +383,12 @@
         "new": true,
         "rating": 5,
         "saleCount": 10,
-        "category": [
-            "organic food"
-        ],
+        "category": {
+            "name": "Electronics"
+        },
+        "subcategory": {
+            "name": "USB"
+        },
         "tag": [
             "organic food"
         ],
@@ -350,6 +398,5 @@
         ],
         "shortDescription": "Supplement Head & Neck Tendon with Autol Sub, Open Approach",
         "fullDescription": "Supplement Head and Neck Tendon with Autologous Tissue Substitute, Open Approach"
-     }
-    
+    }
 ]

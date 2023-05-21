@@ -1,39 +1,77 @@
-import axios from "axios";
-import decryptData from "../utils/decryption";
-import encryptData from "../utils/encryption";
+import caxios from "./customAxios";
+import { handleCommonErrors, handleSuccessResponse } from "./responseHandlers";
+import Swal from "sweetalert2";
 
-class ErrorHandler extends Error {
-  constructor(message, code) {
-    super(message);
-    this.code = code;
+export const login = async (
+  authUsername,
+  authPass,
+  grantType,
+  phoneNumber,
+  password
+) => {
+  //   const bdPhoneNumberRegex = /^(?:\+88|01)?(?:\d{11}|\d{13})$/;
+  const bdPhoneNumberRegex = /^(?:\+?88)?01[3-9]\d{8}$/;
+  const passwordRegex = /^.{6,}$/;
+
+  if (!bdPhoneNumberRegex.test(phoneNumber)) {
+    Swal.fire({
+      title: `Validation Error!`,
+      text: "Invalid phone number. Please enter a valid Bangladeshi phone number.",
+      icon: "error",
+      confirmButtonText: "Done",
+    });
+    return;
   }
-}
 
-const api = async (method, url, postdata) => {
-  let data = {
-    data: encryptData(postdata),
-  };
-  const config = {
-    method,
-    url,
-    data,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
-  try {
-    const response = await axios(config);
-    let decoded = decryptData(response?.data?.encoded);
-    return decoded;
-  } catch (error) {
-    if (error.response) {
-      let decoded = JSON.parse(decryptData(error?.response?.data?.encoded));
-      throw new ErrorHandler(decoded.error.message, decoded.error.code);
-    } else {
-      throw new ErrorHandler("Something went wrong", 500);
-    }
+  if (!passwordRegex.test(password)) {
+    Swal.fire({
+      title: `Validation Error!`,
+      text: "Password must be at least 6 characters long.",
+      icon: "error",
+      confirmButtonText: "Done",
+    });
+    return;
   }
+  let loginData = await caxios.post("/auth/login", {
+    authorization: `${authUsername}:${authPass}`,
+    grant_type: grantType,
+    phoneNumber: phoneNumber,
+    password: password,
+  });
+
+  handleSuccessResponse(loginData);
+
+  return loginData;
 };
 
-export default api;
+export const getRequest = async (url) => {
+  return capi("get", url, null);
+};
+
+export const postRequest = async (url, body) => {
+  return capi("post", url, body);
+};
+
+export const putRequest = async (url, body) => {
+  return capi("put", url, body);
+};
+
+export const delRequest = async (url, body) => {
+  return capi("delete", url, body);
+};
+
+const capi = async (method, url, body) => {
+  let config = {
+    method: method,
+    url: url,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    },
+    data: {
+      ...body,
+    },
+  };
+  let capiData = await caxios.request(config);
+
+  return capiData;
+};

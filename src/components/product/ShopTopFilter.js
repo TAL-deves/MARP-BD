@@ -24,7 +24,7 @@ const ShopTopFilter = ({ products, getSortParams }) => {
               <h5>Categories</h5>
               {uniqueCategories ? (
                 <ul>
-                  {uniqueCategories.map((category, key) => {
+                  {/* {uniqueCategories.map((category, key) => {
                     return (
                       <li key={key}>
                         <button
@@ -37,7 +37,7 @@ const ShopTopFilter = ({ products, getSortParams }) => {
                         </button>
                       </li>
                     );
-                  })}
+                  })} */}
                 </ul>
               ) : (
                 "No categories found"

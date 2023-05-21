@@ -404,6 +404,7 @@ const NavMenu = ({ menuWhiteClass, sidebarMenu }) => {
           
           
           <li>
+            {/* <Link to={process.env.PUBLIC_URL + "/shop-grid-filter"}> */}
             <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
               {t("collection")}
             </Link>

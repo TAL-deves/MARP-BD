@@ -233,7 +233,7 @@ const ProductDescriptionInfo = ({
         <div className="pro-details-meta">
           <span>Categories :</span>
           <ul>
-            {product.category.map((single, key) => {
+            {/* {product.category.map((single, key) => {
               return (
                 <li key={key}>
                   <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
@@ -241,7 +241,8 @@ const ProductDescriptionInfo = ({
                   </Link>
                 </li>
               );
-            })}
+            })} */}
+            {product.category.name}
           </ul>
         </div>
       ) : (

@@ -33,27 +33,27 @@ const ProductGridListSingle = ({
             <Link to={process.env.PUBLIC_URL + "/product/" + product.id}>
               <img
                 className="default-img"
-                src={process.env.PUBLIC_URL + product.image[0]}
+                src={process.env.PUBLIC_URL + product.productImages[0]}
                 alt=""
               />
-              {product.image.length > 1 ? (
+              {product.productImages.length > 1 ? (
                 <img
                   className="hover-img"
-                  src={process.env.PUBLIC_URL + product.image[1]}
+                  src={process.env.PUBLIC_URL + product.productImages[1]}
                   alt=""
                 />
               ) : (
                 ""
               )}
             </Link>
-            {product.discount || product.new ? (
+            {product.discount || product.newItem ? (
               <div className="product-img-badges">
                 {product.discount ? (
                   <span className="pink">-{product.discount}%</span>
                 ) : (
                   ""
                 )}
-                {product.new ? <span className="purple">New</span> : ""}
+                {product.newItem ? <span className="purple">New</span> : ""}
               </div>
             ) : (
               ""
@@ -157,27 +157,27 @@ const ProductGridListSingle = ({
                   <Link to={process.env.PUBLIC_URL + "/product/" + product.id}>
                     <img
                       className="default-img img-fluid"
-                      src={process.env.PUBLIC_URL + product.image[0]}
+                      src={process.env.PUBLIC_URL + product.productImages[0]}
                       alt=""
                     />
-                    {product.image.length > 1 ? (
+                    {product.productImages.length > 1 ? (
                       <img
                         className="hover-img img-fluid"
-                        src={process.env.PUBLIC_URL + product.image[1]}
+                        src={process.env.PUBLIC_URL + product.productImages[1]}
                         alt=""
                       />
                     ) : (
                       ""
                     )}
                   </Link>
-                  {product.discount || product.new ? (
+                  {product.discount || product.newItem ? (
                     <div className="product-img-badges">
                       {product.discount ? (
                         <span className="pink">-{product.discount}%</span>
                       ) : (
                         ""
                       )}
-                      {product.new ? <span className="purple">New</span> : ""}
+                      {product.newItem ? <span className="purple">New</span> : ""}
                     </div>
                   ) : (
                     ""

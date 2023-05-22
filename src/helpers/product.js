@@ -29,10 +29,10 @@
 
 // get products
 export const getProducts = (products, category, type, limit) => {
-  console.log("efkuhk",products)
+  // console.log("efkuhk",products)
  const finalProducts = category
    ? products.filter(
-       product => product.category.name
+       product => product.Category
      )
    : products;
 
@@ -160,7 +160,7 @@ export const getIndividualCategories = products => {
   products &&
     products.map(product => {
       return (
-        product.category.name
+        product.Category
         
         //  &&
         // product.category.map(single => {

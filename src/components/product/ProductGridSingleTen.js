@@ -47,10 +47,10 @@ const ProductGridSingleTen = ({
                 ""
               )}
             </Link>
-            {product.discount || product.new ? (
+            {product.discount || product.newItem ? (
               <div className="product-img-badges">
                 {product.discount ? <span>-{product.discount}%</span> : ""}
-                {product.new ? <span>New</span> : ""}
+                {product.newItem ? <span>New</span> : ""}
               </div>
             ) : (
               ""

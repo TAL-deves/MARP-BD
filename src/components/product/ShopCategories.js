@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { setActiveSort } from "../../helpers/product";
 
 const ShopCategories = ({ categories, getSortParams }) => {
-  console.log("categories",categories)
+  
   return (
     <div className="sidebar-widget">
       <h4 className="pro-sidebar-title">Categories </h4>
@@ -14,8 +14,8 @@ const ShopCategories = ({ categories, getSortParams }) => {
               <div className="sidebar-widget-list-left">
                 <button
                   onClick={e => {
-                    getSortParams("category", "");
-                    setActiveSort(e);
+                  getSortParams("category", "");
+                  setActiveSort(e);
                   }}
                 >
                   <span className="checkmark" /> All Categories

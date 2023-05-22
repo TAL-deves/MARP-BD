@@ -162,11 +162,10 @@ export const getIndividualCategories = products => {
       return (
         product.Category
         
-        //  &&
-        // product.category.map(single => {
+        //   &&
+        // product.Category.map(single => {
         //   return productCategories.push(single);
         // })
-        
       );
     });
   const individualProductCategories = getIndividualItemArray(productCategories);

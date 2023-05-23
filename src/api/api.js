@@ -13,15 +13,15 @@ export const login = async (
   const bdPhoneNumberRegex = /^(?:\+?88)?01[3-9]\d{8}$/;
   const passwordRegex = /^.{6,}$/;
 
-  if (!bdPhoneNumberRegex.test(phoneNumber)) {
-    Swal.fire({
-      title: `Validation Error!`,
-      text: "Invalid phone number. Please enter a valid Bangladeshi phone number.",
-      icon: "error",
-      confirmButtonText: "Done",
-    });
-    return;
-  }
+  // if (!bdPhoneNumberRegex.test(phoneNumber)) {
+  //   Swal.fire({
+  //     title: `Validation Error!`,
+  //     text: "Invalid phone number. Please enter a valid Bangladeshi phone number.",
+  //     icon: "error",
+  //     confirmButtonText: "Done",
+  //   });
+  //   return;
+  // }
 
   if (!passwordRegex.test(password)) {
     Swal.fire({
@@ -54,6 +54,9 @@ export const postRequest = async (url, body) => {
 
 export const putRequest = async (url, body) => {
   return capi("put", url, body);
+};
+export const patchRequest = async (url, body) => {
+  return capi("patch", url, body);
 };
 
 export const delRequest = async (url, body) => {

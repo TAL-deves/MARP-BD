@@ -28,7 +28,7 @@ const ProductGridSingleTwo = ({
   ).toFixed(2);
   const dispatch = useDispatch();
   
-console.log("product grid single 2",product)
+// console.log("product grid single 2",product)
 
 
   return (

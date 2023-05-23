@@ -1,13 +1,65 @@
-import { Fragment } from "react"; 
+import { Fragment, useState } from "react"; 
 import { useLocation } from "react-router-dom"; 
 import Accordion from "react-bootstrap/Accordion";
 import SEO from "../../components/seo";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
+import { patchRequest, postRequest, putRequest } from "../../api/api";
 
 const MyAccount = () => {
   let { pathname } = useLocation();
+    const [password, setPassword]= useState("")
+    const [confirmPassword, setConfirmPassword]= useState("")
+    const [fullName, setFullName]=useState("")
+    const [age, setAge]=useState()
+    const [address, setAddress]=useState("")
+    const [gender, setGender]=useState("")
+    const [maritualStatus , setMaritualStatus]=useState("")
+    const [additionalData , setAdditionalData]=useState({})
+    const [nomineeData , setNomineeData]=useState({})
+    const [DOB , setDOB]=useState("1987-10-11T00:00:00.000Z")
 
+      // set new password 
+      let accessToken= localStorage.getItem("accessToken")
+  async function handleSetNewPassword() {
+    
+    try {
+      const data = await patchRequest('http://localhost:5001/user/profile/updatepassword',password );
+      // Handle the response data
+      
+       console.log("new update profile response",data);
+    } catch (error) {
+      // Handle the error
+      console.error(error);
+    }
+  }
+
+
+  // set update profile
+  
+  async function handleUpdateProfile() {
+    
+    try {
+      const data = await postRequest('https://marpapi.lonewolfdays.site/user/profile',{
+      fullName,
+      age,
+      address,
+      gender,
+      maritualStatus ,
+      additionalData ,
+      nomineeData ,
+      DOB } );
+      // Handle the response data
+      
+       console.log("new pass response",data);
+    } catch (error) {
+      // Handle the error
+      console.error(error);
+    }
+  }
+
+  console.log("age",typeof(age))
+  console.log("gnder",gender)
   return (
     <Fragment>
       <SEO
@@ -42,38 +94,56 @@ const MyAccount = () => {
                             <div className="row">
                               <div className="col-lg-6 col-md-6">
                                 <div className="billing-info">
-                                  <label>First Name</label>
-                                  <input type="text" />
+                                  <label>Full Name</label>
+                                  <input type="text" onChange={(e) => setFullName(e.target.value)}/>
                                 </div>
                               </div>
                               <div className="col-lg-6 col-md-6">
                                 <div className="billing-info">
-                                  <label>Last Name</label>
-                                  <input type="text" />
+                                  <label>Age</label>
+                                  <input type="number" onChange={(e) => setAge(parseInt(e.target.value))}/>
                                 </div>
                               </div>
                               <div className="col-lg-12 col-md-12">
                                 <div className="billing-info">
-                                  <label>Email Address</label>
-                                  <input type="email" />
+                                  <label>Address</label>
+                                  <input type="text" onChange={(e) => setAddress(e.target.value)}/>
                                 </div>
                               </div>
                               <div className="col-lg-6 col-md-6">
                                 <div className="billing-info">
-                                  <label>Telephone</label>
-                                  <input type="text" />
+                                  <label>Gender</label>
+                                  <input type="text" onChange={(e) => setGender(e.target.value)}/>
                                 </div>
                               </div>
                               <div className="col-lg-6 col-md-6">
                                 <div className="billing-info">
-                                  <label>Fax</label>
-                                  <input type="text" />
+                                  <label>Marital Status</label>
+                                  <input type="text" onChange={(e) => setMaritualStatus(e.target.value)}/>
+                                </div>
+                              </div>
+                              <div className="col-lg-6 col-md-6">
+                                <div className="billing-info">
+                                  <label>Nominee Data</label>
+                                  <input type="text" onChange={(e) => setNomineeData(e.target.value)}/>
+                                </div>
+                              </div>
+                              <div className="col-lg-6 col-md-6">
+                                <div className="billing-info">
+                                  <label>Additional Data</label>
+                                  <input type="text" onChange={(e) => setAdditionalData(e.target.value)}/>
+                                </div>
+                              </div>
+                              <div className="col-lg-6 col-md-6">
+                                <div className="billing-info">
+                                  <label>Date of Birth</label>
+                                  <input type="date" onChange={(e) => setDOB(e.target.value)}/>
                                 </div>
                               </div>
                             </div>
                             <div className="billing-back-btn">
                               <div className="billing-btn">
-                                <button type="submit">Continue</button>
+                                <button onClick={()=>{handleUpdateProfile()}}>Continue</button>
                               </div>
                             </div>
                           </div>
@@ -95,19 +165,21 @@ const MyAccount = () => {
                               <div className="col-lg-12 col-md-12">
                                 <div className="billing-info">
                                   <label>Password</label>
-                                  <input type="password" />
+                                  <input type="password" 
+                                  onChange={(e) => setPassword(e.target.value)}/>
                                 </div>
                               </div>
                               <div className="col-lg-12 col-md-12">
                                 <div className="billing-info">
                                   <label>Password Confirm</label>
-                                  <input type="password" />
+                                  <input type="password" 
+                                  onChange={(e) => setConfirmPassword(e.target.value)}/>
                                 </div>
                               </div>
                             </div>
                             <div className="billing-back-btn">
                               <div className="billing-btn">
-                                <button type="submit">Continue</button>
+                                <button onClick={()=>{handleSetNewPassword()}}>Continue</button>
                               </div>
                             </div>
                           </div>

@@ -2,6 +2,7 @@ import { Suspense, lazy } from "react";
 import ScrollToTop from "./helpers/scroll-top";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Career from "./pages/other/Career";
+import ChangePassword from "./pages/other/ChangePassword";
 
 // home pages
 const HomeFashion = lazy(() => import("./pages/home/HomeFashion"));
@@ -377,6 +378,10 @@ const App = () => {
               <Route
                 path={process.env.PUBLIC_URL + "/my-account"}
                 element={<MyAccount/>}
+              />
+              <Route
+                path={process.env.PUBLIC_URL + "/change-password"}
+                element={<ChangePassword/>}
               />
               <Route
                 path={process.env.PUBLIC_URL + "/login-register"}

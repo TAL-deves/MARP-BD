@@ -3,8 +3,29 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import clsx from "clsx";
 import MenuCart from "./sub-components/MenuCart";
+import { postRequest } from "../../api/api";
 
 const IconGroup = ({ iconWhiteClass }) => {
+   // handle logout 
+   
+   let accessToken= localStorage.getItem("accessToken")
+   async function handleLogout() {
+    try {
+      const data = await postRequest('https://marpapi.lonewolfdays.site/auth/logout',accessToken );
+      // Handle the response data
+      
+      // localStorage.removeItem("accessToken")
+      // localStorage.removeItem("refreshToken")
+      // localStorage.removeItem("user")
+      if(data){
+        // window.location.reload();
+      }
+      // console.log("reg response",data);
+    } catch (error) {
+      // Handle the error
+      console.error(error);
+    }
+  }
   const handleClick = e => {
     e.currentTarget.nextSibling.classList.toggle("active");
   };
@@ -42,6 +63,22 @@ const IconGroup = ({ iconWhiteClass }) => {
           <i className="pe-7s-user-female" />
         </button>
         <div className="account-dropdown">
+          {accessToken?
+          <ul>
+          <li onClick={()=>{
+            handleLogout()
+          }}>
+            <Link to={process.env.PUBLIC_URL + "/"}>Logout</Link>
+            
+          </li>
+          
+          <li>
+            <Link to={process.env.PUBLIC_URL + "/my-account"}>
+              my account
+            </Link>
+          </li>
+        </ul>
+          :
           <ul>
             <li>
               <Link to={process.env.PUBLIC_URL + "/login-register"}>Login</Link>
@@ -56,7 +93,7 @@ const IconGroup = ({ iconWhiteClass }) => {
                 my account
               </Link>
             </li>
-          </ul>
+          </ul>}
         </div>
       </div>
       {/* <div className="same-style header-compare">

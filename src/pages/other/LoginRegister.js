@@ -5,8 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import SEO from "../../components/seo";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
-import { postRequest } from "../../api/api";
-import { login } from "../../api/api";
+import { loginHandler, logoutHandler, postRequestHandler } from "../../apiHandler/customApiHandler";
 
 const LoginRegister = () => {
   let { pathname } = useLocation();
@@ -18,7 +17,7 @@ const LoginRegister = () => {
   // handle reg 
   async function handleRegistration() {
     try {
-      const data = await postRequest('https://marpapi.lonewolfdays.site/auth/signup',{email, phoneNumber, password} );
+      const data = await postRequestHandler('https://marpapi.lonewolfdays.site/auth/signup',{email, phoneNumber, password} );
       // Handle the response data
       
       console.log("reg response",data);
@@ -34,12 +33,12 @@ const LoginRegister = () => {
   let grant_type="password"
   async function handleLogin() {
     try {
-      const data = await postRequest('https://marpapi.lonewolfdays.site/auth/login',{authorization,grant_type, phoneNumber, password} );
+      const data = await loginHandler('/auth/login', phoneNumber, password );
       // Handle the response data
-      localStorage.setItem("accessToken", data.encoded.data.accessToken)
-      localStorage.setItem("refreshToken", data.encoded.data.refreshToken)
-      localStorage.setItem("user", data.encoded.data.user)
-      navigate("/")
+      // localStorage.setItem("accessToken", data.data.accessToken)
+      // localStorage.setItem("refreshToken", data.data.refreshToken)
+      // localStorage.setItem("user", data.data.user)
+       navigate("/")
       console.log("reg response",data);
     } catch (error) {
       // Handle the error
@@ -47,11 +46,11 @@ const LoginRegister = () => {
     }
   }
   // handle logout 
-  let accessToken= localStorage.getItem("accessToken")
+  // let accessTokenn= localStorage.getItem("accessToken")
     async function handleLogout() {
       
       try {
-        const data = await postRequest('https://marpapi.lonewolfdays.site/auth/authcheck',accessToken );
+        const data = await logoutHandler('/auth/logout' );
         // Handle the response data
         // localStorage.removeItem("accessToken")
         // localStorage.removeItem("refreshToken")
@@ -121,7 +120,7 @@ const LoginRegister = () => {
                                     Forgot Password?
                                   </Link>
                                 </div>
-                                {accessToken?
+                                {localStorage.getItem("accessToken")!==null?
                                
                                 <button 
                                 // type="submit"
@@ -132,7 +131,7 @@ const LoginRegister = () => {
                                 >
                                   <span>Logout</span>
                                 </button>
-                                :
+                                 : 
                                 <button 
                                 // type="submit"
                                 onClick={(e)=>{
@@ -142,7 +141,7 @@ const LoginRegister = () => {
                                 >
                                   <span>Login</span>
                                 </button>
-                                }
+                                 } 
                               </div>
                             </form>
                           </div>

@@ -8,6 +8,7 @@ import BannerFive from "../../wrappers/banner/BannerFive";
 import CountDownTwo from "../../wrappers/countdown/CountDownTwo";
 import TestimonialOne from "../../wrappers/testimonial/TestimonialOne";
 import NewsletterTwo from "../../wrappers/newsletter/NewsletterTwo";
+import HomeCategory from "../../components/HomeCategory/HomeCategory";
 
 const HomeOrganicFood = () => {
   return (
@@ -24,6 +25,9 @@ const HomeOrganicFood = () => {
       >
         {/* hero slider */}
         <HeroSliderFive spaceLeftClass="ml-70" spaceRightClass="mr-70" />
+        {/* category  */}
+        <HomeCategory/>
+
         {/* feature icon */}
         <FeatureIconFour
           spaceTopClass="pt-10"

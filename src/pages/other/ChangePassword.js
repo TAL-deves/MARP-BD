@@ -3,7 +3,7 @@ import SEO from '../../components/seo'
 import LayoutOne from '../../layouts/LayoutOne'
 import { Breadcrumb } from 'react-bootstrap'
 import { useLocation } from 'react-router-dom';
-import { postRequest } from '../../api/api';
+import { postRequestHandler } from '../../apiHandler/customApiHandler';
 
 function ChangePassword() {
     let { pathname } = useLocation();
@@ -13,7 +13,7 @@ function ChangePassword() {
   async function handleSetNewPassword() {
     
     try {
-      const data = await postRequest('https://marpapi.lonewolfdays.site/auth/logout',password );
+      const data = await postRequestHandler('https://marpapi.lonewolfdays.site/auth/logout',password );
       // Handle the response data
       
        console.log("new pass response",data);

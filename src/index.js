@@ -52,17 +52,17 @@ import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "./assets/scss/style.scss";
 import "./i18n";
-import {getRequest} from '../src/api/api';
+import { getRequestHandler } from './apiHandler/customApiHandler';
 
 const Root = () => {
   const [isRendered, setIsRendered] = useState(false);
   
   async function fetchData() {
     try {
-      const products = await getRequest('https://marpapi.lonewolfdays.site/product/');
+      const products = await getRequestHandler('https://marpapi.lonewolfdays.site/product/');
       // Handle the response data
-      store.dispatch(setProducts(products.encoded.data.allProducts));
-      // console.log("index.js products from api",products.encoded.data.allProducts[0]);
+      console.log("index.js products from api",products.data.allProducts);
+      store.dispatch(setProducts(products.data.allProducts));
     } catch (error) {
       // Handle the error
       console.error(error);

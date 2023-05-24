@@ -3,24 +3,21 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import clsx from "clsx";
 import MenuCart from "./sub-components/MenuCart";
-import { postRequest } from "../../api/api";
+import { getRequestHandler, logoutHandler, postRequestHandler } from "../../apiHandler/customApiHandler";
 
 const IconGroup = ({ iconWhiteClass }) => {
    // handle logout 
    
    let accessToken= localStorage.getItem("accessToken")
+
    async function handleLogout() {
     try {
-      const data = await postRequest('https://marpapi.lonewolfdays.site/auth/logout',accessToken );
+      const data = await logoutHandler('/auth/logout' );
       // Handle the response data
-      
-      // localStorage.removeItem("accessToken")
-      // localStorage.removeItem("refreshToken")
-      // localStorage.removeItem("user")
-      if(data){
-        // window.location.reload();
+      if(data.success===true){
+        window.location.reload()
       }
-      // console.log("reg response",data);
+       console.log("logout response",data);
     } catch (error) {
       // Handle the error
       console.error(error);

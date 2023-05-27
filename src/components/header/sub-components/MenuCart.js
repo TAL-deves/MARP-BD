@@ -9,6 +9,7 @@ const MenuCart = () => {
   const currency = useSelector((state) => state.currency);
   const { cartItems } = useSelector((state) => state.cart);
   let cartTotalPrice = 0;
+  let accessToken =localStorage.getItem("accessToken")
 
   return (
     <div className="shopping-cart-content">
@@ -93,12 +94,22 @@ const MenuCart = () => {
             <Link className="default-btn" to={process.env.PUBLIC_URL + "/cart"}>
               view cart
             </Link>
+            {accessToken?
             <Link
               className="default-btn"
               to={process.env.PUBLIC_URL + "/checkout"}
             >
               checkout
             </Link>
+            :
+            <Link
+              className="default-btn"
+              to={process.env.PUBLIC_URL + "/login-register"}
+            >
+              checkout
+            </Link>
+
+}
           </div>
         </Fragment>
       ) : (

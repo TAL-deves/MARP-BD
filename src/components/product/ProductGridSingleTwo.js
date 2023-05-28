@@ -37,12 +37,16 @@ const ProductGridSingleTwo = ({
         <div className="product-img">
           <Link to={process.env.PUBLIC_URL + "/product/" + product.id}>
             <img
+            height="210px"
+            width="233px"
               className="default-img"
               src={process.env.PUBLIC_URL + product.productImages[0]}
               alt=""
             />
             {product.productImages.length > 1 ? (
               <img
+              height="200px"
+              width="233px"
                 className="hover-img"
                 src={process.env.PUBLIC_URL + product.productImages[1]}
                 alt=""

@@ -12,8 +12,8 @@ const Product = () => {
   let { pathname } = useLocation();
   let { id } = useParams();
   const { products } = useSelector((state) => state.product);
-  // const product = products.find(product => product.id === parseInt(id));
-  const product = products.find(product => product.id);
+  const product = products.find(product => product.id === id);
+  // const product = products.find(product => product.id);
    console.log("details product", product)
   return (
     <Fragment>

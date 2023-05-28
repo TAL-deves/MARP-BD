@@ -25,7 +25,7 @@ const ProductGridListSingle = ({
     discountedPrice * currency.currencyRate
   ).toFixed(2);
   const dispatch = useDispatch();
-
+    
   return (
     <Fragment>
         <div className={clsx("product-wrap", spaceBottomClass)}>

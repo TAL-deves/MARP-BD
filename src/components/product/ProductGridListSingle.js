@@ -33,6 +33,8 @@ const ProductGridListSingle = ({
             <Link to={process.env.PUBLIC_URL + "/product/" + product.id}>
               <img
                 className="default-img"
+                height="233px"
+                width="200px"
                 src={process.env.PUBLIC_URL + product.productImages[0]}
                 alt=""
               />

@@ -12,7 +12,10 @@ export const postRequestHandler = async (url, bodyData) => {
 
 export const patchRequestHandler = async () => {};
 
-export const putRequestHandler = async () => {};
+export const putRequestHandler = async (url) => {
+  let responseData = await caxios.put(url);
+  return responseData;
+};
 
 export const deleteRequestHandler = async () => {};
 

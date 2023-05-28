@@ -8,9 +8,10 @@ import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
 import Swiper, { SwiperSlide } from "../../components/swiper";
 
 const ProductImageGallery = ({ product }) => {
+  console.log(" img gallery", product)
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [index, setIndex] = useState(-1);
-  const slides = product?.image.map((img, i) => ({
+  const slides = product?.productImages.map((img, i) => ({
       src: process.env.PUBLIC_URL + img,
       key: i,
   }));
@@ -53,9 +54,9 @@ const ProductImageGallery = ({ product }) => {
         ) : (
           ""
         )}
-        {product?.image?.length ? (
+        {product?.productImages?.length ? (
           <Swiper options={gallerySwiperParams}>
-            {product.image.map((single, key) => (
+            {product.productImages.map((single, key) => (
               <SwiperSlide key={key}>
                 <button className="lightgallery-button" onClick={() => setIndex(key)}>
                   <i className="pe-7s-expand1"></i>
@@ -81,9 +82,9 @@ const ProductImageGallery = ({ product }) => {
 
       </div>
       <div className="product-small-image-wrapper mt-15">
-        {product?.image?.length ? (
+        {product?.productImages?.length ? (
           <Swiper options={thumbnailSwiperParams}>
-            {product.image.map((single, key) => (
+            {product.productImages.map((single, key) => (
               <SwiperSlide key={key}>
                 <div className="single-image">
                   <img

@@ -5,7 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import SEO from "../../components/seo";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
-import { loginHandler, logoutHandler, postRequestHandler } from "../../apiHandler/customApiHandler";
+import { loginHandler, logoutHandler, postRequestHandler, putRequestHandler } from "../../apiHandler/customApiHandler";
 
 const LoginRegister = () => {
   let { pathname } = useLocation();
@@ -61,6 +61,8 @@ const LoginRegister = () => {
         console.error(error);
       }
     }
+
+
 
 
   return (

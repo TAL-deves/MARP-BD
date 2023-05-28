@@ -4,8 +4,9 @@ import Accordion from "react-bootstrap/Accordion";
 import SEO from "../../components/seo";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
+import { Button, Modal } from 'react-bootstrap';
 
-import { getRequestHandler, patchRequestHandler, postRequestHandler } from "../../apiHandler/customApiHandler";
+import { getRequestHandler, patchRequestHandler, postRequestHandler, putRequestHandler } from "../../apiHandler/customApiHandler";
 
 const MyAccount = () => {
   let { pathname } = useLocation();
@@ -21,6 +22,16 @@ const MyAccount = () => {
   // const [DOB , setDOB]=useState("")
   const [DOB, setDOB] = useState("1987-10-11T00:00:00.000Z")
   const [image, setImage] = useState();
+  const [newImage, setNewImage] = useState();
+  const [showModal, setShowModal] = useState(false);
+
+  const handleModalOpen = () => {
+    setShowModal(true);
+  };
+
+  const handleModalClose = () => {
+    setShowModal(false);
+  };
 
   // set new password 
   let accessToken = localStorage.getItem("accessToken")
@@ -75,7 +86,20 @@ const MyAccount = () => {
       setGender(data.data.profile.gender)
       setMaritualStatus(data.data.profile.maritualStatus)
       setDOB(data.data.profile.DOB)
+      setImage(data.data.profile.profilePhotoBucketURL)
+    } catch (error) {
+      // Handle the error
+      console.error(error);
+    }
+  }
 
+  // photo upload 
+  async function handleUploadPhoto() {
+    try {
+      const data = await putRequestHandler('https://marpapi.lonewolfdays.site/user/profile/uploadpicture',newImage);
+      // Handle the response data
+
+      console.log("photo response", data);
     } catch (error) {
       // Handle the error
       console.error(error);
@@ -105,6 +129,12 @@ const MyAccount = () => {
     setDOB(selectedDate);
   };
 
+  const handleChange = async (e) => {
+    // const file = e.target.files[0];
+    // setImage(e.target.files[0])
+    setNewImage(e.target.value)
+  }
+
   return (
     <Fragment>
       <SEO
@@ -120,8 +150,44 @@ const MyAccount = () => {
           ]}
         />
 
-        <div className="myaccount-area pb-80 pt-100">
+        <div className="myaccount-area pb-80 pt-50">
           <div className="container">
+            <div className="text-center m-5 d-flex flex-column align-items-center" >
+              {image ?
+                <img src={image} alt="" />
+                :
+                <img height="300px" width="300px" src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-9.png" alt="" />
+              }
+              <Modal show={showModal} onHide={handleModalClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Profile Picture</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <div>
+                    Select Image
+                  </div>
+                  <input type="file" accept=".jpg,.jpeg,.png,.gif" onChange={(e) => setNewImage(e.target.value)}                  
+                  />
+                  <div className="text-center m-2">
+                    {newImage?
+                    <img height="200px" width="200px" src={newImage} alt="" />:
+                    <img height="200px" width="200px" src="https://platinumlist.net/guide/wp-content/uploads/2023/03/IMG-worlds-of-adventure.webp" alt="" />}
+                  </div>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={handleModalClose}>
+                    Close
+                  </Button>
+
+                  <Button variant="primary" onClick={handleUploadPhoto}>Upload</Button>
+                </Modal.Footer>
+              </Modal>
+              {image ?
+                <Button className="m-2" onClick={handleModalOpen}>Change Image</Button>
+                :
+                <Button className="m-2" onClick={handleModalOpen}>Upload Image</Button>
+              }
+            </div>
             <div className="row">
               <div className="ms-auto me-auto col-lg-9">
                 <div className="myaccount-wrapper">
@@ -155,12 +221,12 @@ const MyAccount = () => {
                                 <input value={address} type="text" onChange={(e) => setAddress(e.target.value)} />
                               </div>
                             </div>
-                            <div className="col-lg-12 col-md-12">
-                                <div className="billing-info">
-                                  <label>Image</label>
-                                  <input type="file" accept=".jpg,.jpeg,.png,.gif" onChange={(e) => setImage(e.target.value)}/>
-                                </div>
+                            {/* <div className="col-lg-12 col-md-12">
+                              <div className="billing-info">
+                                <label>Image</label>
+                                <input type="file" accept=".jpg,.jpeg,.png,.gif" onChange={(e) => setImage(e.target.value)} />
                               </div>
+                            </div> */}
                             <div className="col-lg-6 col-md-6">
                               <div className="billing-info">
                                 <label>Gender</label>

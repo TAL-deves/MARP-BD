@@ -12,8 +12,9 @@ const Product = () => {
   let { pathname } = useLocation();
   let { id } = useParams();
   const { products } = useSelector((state) => state.product);
-  const product = products.find(product => product.id === parseInt(id));
-
+  // const product = products.find(product => product.id === parseInt(id));
+  const product = products.find(product => product.id);
+   console.log("details product", product)
   return (
     <Fragment>
       <SEO
@@ -46,12 +47,12 @@ const Product = () => {
         />:<></>}
 
         {/* related product slider */}
-        {product && product.fullDescription?
+        {/* {product && product.fullDescription?
         <RelatedProductSlider
           spaceBottomClass="pb-95"
           category={product.category[0]}
         />
-        :<></>}
+        :<></>} */}
       </LayoutOne>
     </Fragment>
   );

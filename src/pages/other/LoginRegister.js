@@ -1,26 +1,30 @@
 import React, { Fragment, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom"; 
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Tab from "react-bootstrap/Tab";
 import Nav from "react-bootstrap/Nav";
 import SEO from "../../components/seo";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import { loginHandler, logoutHandler, postRequestHandler, putRequestHandler } from "../../apiHandler/customApiHandler";
+import Swal from 'sweetalert2';
+import { Modal } from 'react-bootstrap';
+
 
 const LoginRegister = () => {
   let { pathname } = useLocation();
-  const navigate = useNavigate();
-  const [email, setEmail]= useState("")
-  const [phoneNumber, setPhoneNumber] =useState("")
-  const [password, setPassword]= useState("")
+  
+  const [email, setEmail] = useState("")
+  const [phoneNumber, setPhoneNumber] = useState("")
+  const [password, setPassword] = useState("")
+  const [show, setShow] = useState(false);
 
   // handle reg 
   async function handleRegistration() {
     try {
-      const data = await postRequestHandler('https://marpapi.lonewolfdays.site/auth/signup',{email, phoneNumber, password} );
+      const data = await postRequestHandler('https://marpapi.lonewolfdays.site/auth/signup', { email, phoneNumber, password });
       // Handle the response data
-      
-      console.log("reg response",data);
+
+      console.log("reg response", data);
     } catch (error) {
       // Handle the error
       console.error(error);
@@ -29,17 +33,28 @@ const LoginRegister = () => {
 
 
   // handle login 
-  let authorization= "application:secret";
-  let grant_type="password"
+  let authorization = "application:secret";
+  let grant_type = "password"
   async function handleLogin() {
+    setShow(true);
     try {
-      const data = await loginHandler('/auth/login', phoneNumber, password );
+      const data = await loginHandler('/auth/login', phoneNumber, password);
       // Handle the response data
-      // localStorage.setItem("accessToken", data.data.accessToken)
-      // localStorage.setItem("refreshToken", data.data.refreshToken)
-      // localStorage.setItem("user", data.data.user)
-       navigate("/")
-      console.log("reg response",data);
+      
+      // if (data.error.code === 401) {
+      //   setShow(false)
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Oops...',
+      //     text: `${data.errMsg}`,
+      //     // footer: '<a href="">Why do I have this issue?</a>'
+      //   })
+      // }
+      // else if (data.success === true) {
+      //   setShow(false);
+      //   navigate("/")
+      // }
+      console.log("login response", data);
     } catch (error) {
       // Handle the error
       console.error(error);
@@ -47,37 +62,43 @@ const LoginRegister = () => {
   }
   // handle logout 
   // let accessTokenn= localStorage.getItem("accessToken")
-    async function handleLogout() {
-      
-      try {
-        const data = await logoutHandler('/auth/logout' );
-        // Handle the response data
-        // localStorage.removeItem("accessToken")
-        // localStorage.removeItem("refreshToken")
-        // localStorage.removeItem("user")
-        console.log("logout response",data);
-      } catch (error) {
-        // Handle the error
-        console.error(error);
-      }
+  async function handleLogout() {
+
+    try {
+      const data = await logoutHandler('/auth/logout');
+      // Handle the response data
+      // localStorage.removeItem("accessToken")
+      // localStorage.removeItem("refreshToken")
+      // localStorage.removeItem("user")
+      console.log("logout response", data);
+    } catch (error) {
+      // Handle the error
+      console.error(error);
     }
+  }
 
 
 
 
   return (
     <Fragment>
+      {/* <Modal class="spinner-border text-light" show={show}>
+        <Modal.Body>
+          <h4>Backdrop Content</h4>
+          <p>This is the backdrop content.</p>
+        </Modal.Body>
+      </Modal> */}
       <SEO
         titleTemplate="Login"
         description="Login page of flone react minimalist eCommerce template."
       />
       <LayoutOne headerTop="visible">
         {/* breadcrumb */}
-        <Breadcrumb 
+        <Breadcrumb
           pages={[
-            {label: "Home", path: process.env.PUBLIC_URL + "/" },
-            {label: "Login Register", path: process.env.PUBLIC_URL + pathname }
-          ]} 
+            { label: "Home", path: process.env.PUBLIC_URL + "/" },
+            { label: "Login Register", path: process.env.PUBLIC_URL + pathname }
+          ]}
         />
         <div className="login-register-area pt-100 pb-100">
           <div className="container">
@@ -102,7 +123,7 @@ const LoginRegister = () => {
                         <div className="login-form-container">
                           <div className="login-register-form">
                             <form>
-                            <input
+                              <input
                                 type="number"
                                 // name="phone"
                                 placeholder="Phone Number"
@@ -122,28 +143,32 @@ const LoginRegister = () => {
                                     Forgot Password?
                                   </Link>
                                 </div>
-                                {localStorage.getItem("accessToken")!==null?
-                               
-                                <button 
-                                // type="submit"
-                                onClick={(e)=>{
-                                  e.preventDefault();
-                                  handleLogout();
-                                }}
-                                >
-                                  <span>Logout</span>
-                                </button>
-                                 : 
-                                <button 
-                                // type="submit"
-                                onClick={(e)=>{
-                                  e.preventDefault();
-                                  handleLogin();
-                                }}
-                                >
-                                  <span>Login</span>
-                                </button>
-                                 } 
+                                {localStorage.getItem("accessToken") !== null ?
+
+                                  <button
+                                    // type="submit"
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      handleLogout();
+                                    }}
+                                  >
+                                    <span>Logout</span>
+                                  </button>
+                                  :
+                                  <button
+                                    // type="submit"
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      handleLogin();
+                                    }}
+                                  >
+                                    <span>Login</span>
+
+                                    {/* <div class="spinner-border text-secondary" role="status">
+                                      <span class="visually-hidden">Loading...</span>
+                                    </div> */}
+                                  </button>
+                                }
                               </div>
                             </form>
                           </div>
@@ -153,12 +178,12 @@ const LoginRegister = () => {
                         <div className="login-form-container">
                           <div className="login-register-form">
                             <form>
-                                <input
-                                  // name="user-email"
-                                  placeholder="Email"
-                                  type="email"
-                                  onChange={(e) => setEmail(e.target.value)}
-                                />
+                              <input
+                                // name="user-email"
+                                placeholder="Email"
+                                type="email"
+                                onChange={(e) => setEmail(e.target.value)}
+                              />
                               <input
                                 type="number"
                                 // name="phone"
@@ -172,10 +197,11 @@ const LoginRegister = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                               />
                               <div className="button-box">
-                                <button 
-                                // type="submit" 
-                                onClick={(e)=>{
-                                  e.preventDefault();handleRegistration()}}>
+                                <button
+                                  // type="submit" 
+                                  onClick={(e) => {
+                                    e.preventDefault(); handleRegistration()
+                                  }}>
                                   <span>Register</span>
                                 </button>
                               </div>

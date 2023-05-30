@@ -1,4 +1,7 @@
 import caxios from "./axiosInstance";
+import axios from "axios";
+import decryptData from "./utils/decryption";
+
 
 export const getRequestHandler = async (url) => {
   let responseData = await caxios.get(url);
@@ -12,8 +15,30 @@ export const postRequestHandler = async (url, bodyData) => {
 
 export const patchRequestHandler = async () => {};
 
-export const putRequestHandler = async (url) => {
-  let responseData = await caxios.put(url);
+export const putRequestHandler = async (formData) => {
+  const accessToken = localStorage.getItem("accessToken");
+  const headers = {
+    Authorization: `Bearer ${accessToken}`,
+    "Content-Type": "multipart/form-data",
+  };
+
+  let responseData;
+  await axios
+    .put(
+      `${process.env.REACT_APP_PUBLIC_APIPOINT}/user/profile/uploadpicture`,
+      formData,
+      {
+        headers,
+      }
+    )
+    .then((response) => {
+      responseData = JSON.parse(decryptData(response.data.encoded));
+    })
+    .catch((error) => {
+
+      responseData = JSON.parse(decryptData(error.response.data.encoded));
+    });
+
   return responseData;
 };
 

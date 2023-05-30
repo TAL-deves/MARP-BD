@@ -7,6 +7,7 @@ import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import { Button, Modal } from 'react-bootstrap';
 
 import { getRequestHandler, patchRequestHandler, postRequestHandler, putRequestHandler } from "../../apiHandler/customApiHandler";
+import axios from "axios";
 
 const MyAccount = () => {
   let { pathname } = useLocation();
@@ -24,6 +25,12 @@ const MyAccount = () => {
   const [image, setImage] = useState();
   const [newImage, setNewImage] = useState();
   const [showModal, setShowModal] = useState(false);
+
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
 
   const handleModalOpen = () => {
     setShowModal(true);
@@ -92,18 +99,20 @@ const MyAccount = () => {
       console.error(error);
     }
   }
-
+  
   // photo upload 
   async function handleUploadPhoto() {
-    try {
-      const data = await putRequestHandler('https://marpapi.lonewolfdays.site/user/profile/uploadpicture',newImage);
-      // Handle the response data
+  
+    if (selectedFile) {
+      const formData = new FormData();
+      formData.append("profilePhoto", selectedFile);
 
-      console.log("photo response", data);
-    } catch (error) {
-      // Handle the error
-      console.error(error);
+      let data = await putRequestHandler(formData);
+
+      console.log("put request ----- ", data);
+ 
     }
+
   }
 
   useEffect(() => {
@@ -127,13 +136,11 @@ const MyAccount = () => {
   const handleDateChange = (event) => {
     const selectedDate = event.target.value + ":00.000Z";
     setDOB(selectedDate);
+
   };
 
-  const handleChange = async (e) => {
-    // const file = e.target.files[0];
-    // setImage(e.target.files[0])
-    setNewImage(e.target.value)
-  }
+
+
 
   return (
     <Fragment>
@@ -166,11 +173,11 @@ const MyAccount = () => {
                   <div>
                     Select Image
                   </div>
-                  <input type="file" accept=".jpg,.jpeg,.png,.gif" onChange={(e) => setNewImage(e.target.value)}                  
+                  <input type="file" accept=".jpg,.jpeg,.png,.gif" onChange={handleChange}                  
                   />
                   <div className="text-center m-2">
-                    {newImage?
-                    <img height="200px" width="200px" src={newImage} alt="" />:
+                    {selectedFile?
+                    <img height="200px" width="200px" src={selectedFile} alt="" />:
                     <img height="200px" width="200px" src="https://platinumlist.net/guide/wp-content/uploads/2023/03/IMG-worlds-of-adventure.webp" alt="" />}
                   </div>
                 </Modal.Body>
@@ -187,6 +194,11 @@ const MyAccount = () => {
                 :
                 <Button className="m-2" onClick={handleModalOpen}>Upload Image</Button>
               }
+
+<div>
+          <input type="file" onChange={handleChange} />
+          <button onClick={handleUploadPhoto}>Upload</button>
+        </div>
             </div>
             <div className="row">
               <div className="ms-auto me-auto col-lg-9">

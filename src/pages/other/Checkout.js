@@ -1,19 +1,87 @@
-import { Fragment } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Fragment, useEffect, useState } from "react";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getDiscountPrice } from "../../helpers/product";
 import SEO from "../../components/seo";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
+import { Form } from 'react-bootstrap';
+import { use } from "i18next";
+import { postRequestHandler } from "../../apiHandler/customApiHandler";
 
 const Checkout = () => {
-  let cartTotalPrice = 0;
+  const navigate = useNavigate();
+   let cartTotalPrice = 0;
+   let cartPriceForApi = 0;
+  const [finalPrice, setFinalPrice] = useState(0);
+  const [selectedOption, setSelectedOption] = useState('cod');
 
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
   let { pathname } = useLocation();
   const currency = useSelector((state) => state.currency);
   const { cartItems } = useSelector((state) => state.cart);
+    
+  
+    {cartItems.map((cartItem, key) => {
+      const discountedPrice = getDiscountPrice(
+        cartItem.price,
+        cartItem.discount
+      );
+      const finalPrice = (
+        cartItem.price * currency.currencyRate
+      ).toFixed(2);
+      const finalDisPrice = (
+        discountedPrice * currency.currencyRate
+      ).toFixed(2);
 
-  return (
+      discountedPrice != null
+        ? (cartPriceForApi +=
+          finalPrice * cartItem.quantity)
+        : (cartPriceForApi +=
+          finalDisPrice * cartItem.quantity);
+        })}
+
+        useEffect(()=>{
+          setFinalPrice(cartPriceForApi)
+        },[])
+
+
+          // set cod order
+          // "products": [{"id":"cli8t3qp1000hf9t0byi7o7m9", "quantity":5}],
+          // "price": 1000,
+          // "paymentMethod": "cod"
+          
+          const products = cartItems.map((item) => ({
+            id: item.id,
+            quantity: item.quantity,
+          }));
+          
+          // const products= [{"id":`${cartItems[0].id}`, "quantity":cartItems[0].quantity}]
+          const price= finalPrice
+          const paymentMethod= selectedOption
+
+          console.log("qttt", products);
+  async function handleCodOrder() {
+ 
+    try {
+      const response = await postRequestHandler('/order/ordercod',{products, price, paymentMethod});
+      // Handle the response data
+      console.log("cod response", response);
+      if(response.success){
+        navigate("/orders")
+      }
+ 
+    } catch (error) {
+      // Handle the error
+      console.error(error);
+    }
+  }
+
+  console.log("total", cartItems)
+    
+    return (
     <Fragment>
       <SEO
         titleTemplate="Checkout"
@@ -21,11 +89,11 @@ const Checkout = () => {
       />
       <LayoutOne headerTop="visible">
         {/* breadcrumb */}
-        <Breadcrumb 
+        <Breadcrumb
           pages={[
-            {label: "Home", path: process.env.PUBLIC_URL + "/" },
-            {label: "Checkout", path: process.env.PUBLIC_URL + pathname }
-          ]} 
+            { label: "Home", path: process.env.PUBLIC_URL + "/" },
+            { label: "Checkout", path: process.env.PUBLIC_URL + pathname }
+          ]}
         />
         <div className="checkout-area pt-95 pb-100">
           <div className="container">
@@ -153,9 +221,11 @@ const Checkout = () => {
 
                               discountedPrice != null
                                 ? (cartTotalPrice +=
-                                    finalDiscountedPrice * cartItem.quantity)
+                                  finalDiscountedPrice * cartItem.quantity)
                                 : (cartTotalPrice +=
-                                    finalProductPrice * cartItem.quantity);
+                                  finalProductPrice * cartItem.quantity);
+
+                                 
                               return (
                                 <li key={key}>
                                   <span className="order-middle-left">
@@ -164,14 +234,14 @@ const Checkout = () => {
                                   <span className="order-price">
                                     {discountedPrice !== null
                                       ? currency.currencySymbol +
-                                        (
-                                          finalDiscountedPrice *
-                                          cartItem.quantity
-                                        ).toFixed(2)
+                                      (
+                                        finalDiscountedPrice *
+                                        cartItem.quantity
+                                      ).toFixed(2)
                                       : currency.currencySymbol +
-                                        (
-                                          finalProductPrice * cartItem.quantity
-                                        ).toFixed(2)}
+                                      (
+                                        finalProductPrice * cartItem.quantity
+                                      ).toFixed(2)}
                                   </span>
                                 </li>
                               );
@@ -196,8 +266,33 @@ const Checkout = () => {
                       </div>
                       <div className="payment-method"></div>
                     </div>
+                    <div>
+                      <Form>
+                        <Form.Check
+                          type="radio"
+                          id="radio1"
+                          label="Cash On Delivery"
+                          name="options"
+                          value="cod"
+                          className="custom-radio"
+                          checked={selectedOption === 'cod'}
+                          onChange={handleOptionChange}
+                        />
+                        <Form.Check
+                          type="radio"
+                          id="radio2"
+                          label="Pay Now"
+                          name="options"
+                          value="pNow"
+                          className="custom-radio"
+                          checked={selectedOption === 'pNow'}
+                          onChange={handleOptionChange}
+                        />
+
+                      </Form>
+                    </div>
                     <div className="place-order mt-25">
-                      <button className="btn-hover">Place Order</button>
+                      <button onClick={()=>{handleCodOrder()}} className="btn-hover">Place Order</button>
                     </div>
                   </div>
                 </div>

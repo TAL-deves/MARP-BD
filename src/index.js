@@ -61,7 +61,7 @@ const Root = () => {
     try {
       const products = await getRequestHandler('https://marpapi.lonewolfdays.site/product/');
       // Handle the response data
-      console.log("index.js products from api",products.data.allProducts);
+      console.log("index.js products from api",products);
       store.dispatch(setProducts(products.data.allProducts));
     } catch (error) {
       // Handle the error

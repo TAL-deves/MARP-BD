@@ -12,7 +12,7 @@ function HomeCategory() {
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex === category.length - 1 ? 0 : prevIndex + 1));
   };
-  // handle reg 
+  // handle category
   async function handleGetCategory() {
     try {
       const data = await getRequestHandler('/category/allcategories');

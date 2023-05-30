@@ -3,7 +3,7 @@ import encryptData from "./utils/encryption";
 import decryptData from "./utils/decryption";
 
 const encryption = process.env.REACT_APP_PUBLIC_ENCRYPTION || "TRUE";
-const baseURL = process.env.REACT_APP_PUBLIC_APIPOINT || "https://marpapi.lonewolfdays.site"
+const baseURL = process.env.REACT_APP_PUBLIC_APIPOINT || "https://marpapi.techanalyticaltd.com"
 
 const caxios = axios.create({
   baseURL: baseURL,
@@ -16,7 +16,11 @@ caxios.interceptors.request.use(
     )}`;
 
     if (encryption === "TRUE") {
-      config.data = { data: encryptData(config.data) };
+      if (config.method === "put" || config.method === "PUT") {
+        config.data = { data: config.data };
+      } else {
+        config.data = { data: encryptData(config.data) };
+      }
     } else {
       config.data = { data: config.data };
     }

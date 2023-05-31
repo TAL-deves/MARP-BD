@@ -12,17 +12,23 @@ import { Modal } from 'react-bootstrap';
 
 const LoginRegister = () => {
   let { pathname } = useLocation();
-  
+
   const [email, setEmail] = useState("")
   const [phoneNumber, setPhoneNumber] = useState("")
   const [password, setPassword] = useState("")
   const [show, setShow] = useState(false);
-
+  const navigate = useNavigate();
   // handle reg 
   async function handleRegistration() {
+    setShow(true);
     try {
-      const data = await postRequestHandler('https://marpapi.lonewolfdays.site/auth/signup', { email, phoneNumber, password });
+      const data = await postRequestHandler('/auth/signup', { email, phoneNumber, password });
       // Handle the response data
+      if (data.success === true) {
+        window.location.reload()
+        console.log("reg in", data)
+        setShow(false);
+      }
 
       console.log("reg response", data);
     } catch (error) {
@@ -40,20 +46,22 @@ const LoginRegister = () => {
     try {
       const data = await loginHandler('/auth/login', phoneNumber, password);
       // Handle the response data
-      
-      // if (data.error.code === 401) {
-      //   setShow(false)
-      //   Swal.fire({
-      //     icon: 'error',
-      //     title: 'Oops...',
-      //     text: `${data.errMsg}`,
-      //     // footer: '<a href="">Why do I have this issue?</a>'
-      //   })
-      // }
-      // else if (data.success === true) {
-      //   setShow(false);
-      //   navigate("/")
-      // }
+      if (data.success === true) {
+        navigate("/")
+        console.log("logged in")
+        setShow(false);
+      }
+
+      else if (data.error.code === 401) {
+        setShow(false)
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `${data.errMsg}`,
+          // footer: '<a href="">Why do I have this issue?</a>'
+        })
+      }
+
       console.log("login response", data);
     } catch (error) {
       // Handle the error
@@ -77,17 +85,16 @@ const LoginRegister = () => {
     }
   }
 
-
-
-
   return (
     <Fragment>
-      {/* <Modal class="spinner-border text-light" show={show}>
-        <Modal.Body>
+      {/* <Modal class="spinner-border text-light" show={show}> */}
+      {/* <Modal.Body style={{ backgroundColor: `transparent`, border:"none" }}>
           <h4>Backdrop Content</h4>
           <p>This is the backdrop content.</p>
-        </Modal.Body>
-      </Modal> */}
+        </Modal.Body> */}
+
+      {/* </Modal> */}
+
       <SEO
         titleTemplate="Login"
         description="Login page of flone react minimalist eCommerce template."
@@ -156,17 +163,19 @@ const LoginRegister = () => {
                                   </button>
                                   :
                                   <button
+                                    className="d-flex align-items-center"
                                     // type="submit"
                                     onClick={(e) => {
                                       e.preventDefault();
                                       handleLogin();
                                     }}
                                   >
-                                    <span>Login</span>
 
-                                    {/* <div class="spinner-border text-secondary" role="status">
+                                    
+
+                                    {show ? <div class="spinner-border text-warning" role="status">
                                       <span class="visually-hidden">Loading...</span>
-                                    </div> */}
+                                    </div> : <span className="m-1">Login</span>}
                                   </button>
                                 }
                               </div>
@@ -202,7 +211,10 @@ const LoginRegister = () => {
                                   onClick={(e) => {
                                     e.preventDefault(); handleRegistration()
                                   }}>
-                                  <span>Register</span>
+                                  
+                                  {show ? <div class="spinner-border text-warning" role="status">
+                                      <span class="visually-hidden">Loading...</span>
+                                    </div> : <span>Register</span>}
                                 </button>
                               </div>
                             </form>

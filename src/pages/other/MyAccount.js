@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Accordion from "react-bootstrap/Accordion";
 import SEO from "../../components/seo";
 import LayoutOne from "../../layouts/LayoutOne";
@@ -10,6 +10,7 @@ import { getRequestHandler, patchRequestHandler, postRequestHandler, putRequestH
 import axios from "axios";
 
 const MyAccount = () => {
+  const navigate = useNavigate();
   let { pathname } = useLocation();
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
@@ -27,7 +28,7 @@ const MyAccount = () => {
   const [showModal, setShowModal] = useState(false);
 
   const [selectedFile, setSelectedFile] = useState(null);
-
+  const [show, setShow] = useState(false);
   const handleChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
@@ -39,6 +40,28 @@ const MyAccount = () => {
   const handleModalClose = () => {
     setShowModal(false);
   };
+  
+  // set get profile
+
+  async function handleAuthCheck() {
+
+    try {
+      const data = await getRequestHandler('/auth/authcheck');
+      // Handle the response data
+      console.log("auth check response", data);
+      if(data.error.code===401){
+        localStorage.removeItem("accessToken")
+      localStorage.removeItem("refreshToken")
+      localStorage.removeItem("user")
+      navigate("/")
+      }
+    } catch (error) {
+      // Handle the error
+      console.error(error);
+    }
+  }
+
+
 
   // set new password 
   let accessToken = localStorage.getItem("accessToken")
@@ -102,21 +125,25 @@ const MyAccount = () => {
   
   // photo upload 
   async function handleUploadPhoto() {
-  
+    setShow(true);
     if (selectedFile) {
       const formData = new FormData();
       formData.append("profilePhoto", selectedFile);
 
       let data = await putRequestHandler(formData);
-
+      if (data.success === true) {
+        window.location.reload()
+        setShow(false);
+      }
       console.log("put request ----- ", data);
- 
+      //  window.location.reload()
     }
 
   }
-
+  
   useEffect(() => {
     handleGetProfile()
+    handleAuthCheck()
   }, [])
 
   // async function handleUpdateProfile() {
@@ -161,7 +188,7 @@ const MyAccount = () => {
           <div className="container">
             <div className="text-center m-5 d-flex flex-column align-items-center" >
               {image ?
-                <img src={image} alt="" />
+                <img height="300px" width="300px" src={image} alt="" />
                 :
                 <img height="300px" width="300px" src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-9.png" alt="" />
               }
@@ -175,18 +202,22 @@ const MyAccount = () => {
                   </div>
                   <input type="file" accept=".jpg,.jpeg,.png,.gif" onChange={handleChange}                  
                   />
-                  <div className="text-center m-2">
+                  {/* <div className="text-center m-2">
                     {selectedFile?
-                    <img height="200px" width="200px" src={selectedFile} alt="" />:
-                    <img height="200px" width="200px" src="https://platinumlist.net/guide/wp-content/uploads/2023/03/IMG-worlds-of-adventure.webp" alt="" />}
-                  </div>
+                    <img height="200px" width="200px" src={selectedFile.name} alt="" />:
+                    <img height="200px" width="200px" src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-9.png" alt="" />
+                    }
+                  </div> */}
                 </Modal.Body>
                 <Modal.Footer>
                   <Button variant="secondary" onClick={handleModalClose}>
                     Close
                   </Button>
-
-                  <Button variant="primary" onClick={handleUploadPhoto}>Upload</Button>
+                  
+                  {show ? <div class="spinner-border text-warning" role="status">
+                                      <span class="visually-hidden">Loading...</span>
+                                    </div> : <Button variant="primary" onClick={handleUploadPhoto}>Upload</Button>}
+                  
                 </Modal.Footer>
               </Modal>
               {image ?
@@ -195,10 +226,6 @@ const MyAccount = () => {
                 <Button className="m-2" onClick={handleModalOpen}>Upload Image</Button>
               }
 
-<div>
-          <input type="file" onChange={handleChange} />
-          <button onClick={handleUploadPhoto}>Upload</button>
-        </div>
             </div>
             <div className="row">
               <div className="ms-auto me-auto col-lg-9">

@@ -2,9 +2,13 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
+import { Overlay } from "react-bootstrap";
+import { useState } from "react";
 
 const NavMenu = ({ menuWhiteClass, sidebarMenu }) => {
   const { t } = useTranslation();
+
+
   
   return (
     <div
@@ -13,6 +17,8 @@ const NavMenu = ({ menuWhiteClass, sidebarMenu }) => {
           : `main-menu ${menuWhiteClass ? menuWhiteClass : ""}`)}
     >
       <nav>
+      
+
         <ul>
           <li>
             <Link to={process.env.PUBLIC_URL + "/"}>
@@ -409,12 +415,12 @@ const NavMenu = ({ menuWhiteClass, sidebarMenu }) => {
               {t("collection")}
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to={process.env.PUBLIC_URL + "/career"}>
-              {/* {t("collection")} */}
+              
               {t("career")}
             </Link>
-          </li>
+          </li> */}
           {/* <li>
             <Link to={process.env.PUBLIC_URL + "/"}>
               {t("pages")}

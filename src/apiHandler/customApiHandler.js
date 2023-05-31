@@ -35,7 +35,6 @@ export const putRequestHandler = async (formData) => {
       responseData = JSON.parse(decryptData(response.data.encoded));
     })
     .catch((error) => {
-
       responseData = JSON.parse(decryptData(error.response.data.encoded));
     });
 

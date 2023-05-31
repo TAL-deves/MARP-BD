@@ -13,7 +13,7 @@ function ChangePassword() {
   async function handleSetNewPassword() {
     
     try {
-      const data = await postRequestHandler('https://marpapi.lonewolfdays.site/auth/logout',password );
+      const data = await postRequestHandler('https://marpapi.techanalyticaltd.com/auth/logout',password );
       // Handle the response data
       
        console.log("new pass response",data);

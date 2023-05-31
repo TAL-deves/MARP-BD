@@ -59,7 +59,7 @@ const Root = () => {
   
   async function fetchData() {
     try {
-      const products = await getRequestHandler('https://marpapi.lonewolfdays.site/product/');
+      const products = await getRequestHandler('https://marpapi.techanalyticaltd.com/product/');
       // Handle the response data
       console.log("index.js products from api",products);
       store.dispatch(setProducts(products.data.allProducts));

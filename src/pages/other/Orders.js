@@ -83,7 +83,7 @@ function Orders() {
                               <img height="100px" width="100px" src={product.Product.productImages[0]} alt='' />
                               <h5 class="card-title">{product.Product.name}</h5>
                               <p class="card-text">{product.Product.shortDescription}</p>
-                              <p class="card-text">${product.Product.price}</p>
+                              <p class="card-text">৳{product.Product.price}</p>
                             </div>
                           </div>
                               </>

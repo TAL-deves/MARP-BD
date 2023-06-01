@@ -5,11 +5,12 @@ import { getDiscountPrice } from "../../helpers/product";
 import SEO from "../../components/seo";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
-import { Form } from 'react-bootstrap';
+import { Form, Spinner } from 'react-bootstrap';
 import { use } from "i18next";
 import { getRequestHandler, postRequestHandler } from "../../apiHandler/customApiHandler";
 
 const Checkout = () => {
+  const [show, setShow] = useState(false)
   const navigate = useNavigate();
   let cartTotalPrice = 0;
   let cartPriceForApi = 0;
@@ -66,7 +67,7 @@ const Checkout = () => {
 
   // handle cod order 
   async function handleCodOrder() {
-
+    setShow(true)
     try {
       const response = await postRequestHandler('/order/ordercod', { products, price, paymentMethod });
       // Handle the response data
@@ -108,6 +109,13 @@ const Checkout = () => {
 
   return (
     <Fragment>
+      {show && (
+        <div className="backdrop">
+          <Spinner animation="border" role="status" variant="light">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </div>
+      )}
       <SEO
         titleTemplate="Checkout"
         description="Checkout page of MARP Bangladesh."

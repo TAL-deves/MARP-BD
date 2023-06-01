@@ -159,7 +159,10 @@ const LoginRegister = () => {
                                       handleLogout();
                                     }}
                                   >
-                                    <span>Logout</span>
+                                    
+                                    {show ? <div class="spinner-border text-warning" role="status">
+                                      <span class="visually-hidden">Loading...</span>
+                                    </div> : <span className="m-1">Logout</span>}
                                   </button>
                                   :
                                   <button
@@ -171,7 +174,7 @@ const LoginRegister = () => {
                                     }}
                                   >
 
-                                    
+
 
                                     {show ? <div class="spinner-border text-warning" role="status">
                                       <span class="visually-hidden">Loading...</span>
@@ -211,10 +214,10 @@ const LoginRegister = () => {
                                   onClick={(e) => {
                                     e.preventDefault(); handleRegistration()
                                   }}>
-                                  
+
                                   {show ? <div class="spinner-border text-warning" role="status">
-                                      <span class="visually-hidden">Loading...</span>
-                                    </div> : <span>Register</span>}
+                                    <span class="visually-hidden">Loading...</span>
+                                  </div> : <span>Register</span>}
                                 </button>
                               </div>
                             </form>

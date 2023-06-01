@@ -4,20 +4,24 @@ import { useSelector } from "react-redux";
 import clsx from "clsx";
 import MenuCart from "./sub-components/MenuCart";
 import { getRequestHandler, logoutHandler, postRequestHandler } from "../../apiHandler/customApiHandler";
+import { useEffect, useState } from "react";
+import { Spinner } from "react-bootstrap";
 
 const IconGroup = ({ iconWhiteClass }) => {
-   // handle logout 
-   
-   let accessToken= localStorage.getItem("accessToken")
+  // handle logout 
+  const [show, setShow] = useState(false)
+  let accessToken = localStorage.getItem("accessToken")
 
-   async function handleLogout() {
+  async function handleLogout() {
+    setShow(true)
     try {
-      const data = await logoutHandler('/auth/logout' );
+      const data = await logoutHandler('/auth/logout');
       // Handle the response data
-      if(data.success===true){
+      if (data.success === true) {
         window.location.reload()
+
       }
-       console.log("logout response",data);
+      console.log("logout response", data);
     } catch (error) {
       // Handle the error
       console.error(error);
@@ -37,21 +41,20 @@ const IconGroup = ({ iconWhiteClass }) => {
   const { wishlistItems } = useSelector((state) => state.wishlist);
   const { cartItems } = useSelector((state) => state.cart);
 
+  
+
+
+
   return (
     <div className={clsx("header-right-wrap", iconWhiteClass)} >
-      {/* <div className="same-style header-search d-none d-lg-block">
-        <button className="search-active" onClick={e => handleClick(e)}>
-          <i className="pe-7s-search" />
-        </button>
-        <div className="search-content">
-          <form action="#">
-            <input type="text" placeholder="Search" />
-            <button className="button-search">
-              <i className="pe-7s-search" />
-            </button>
-          </form>
+      
+      {show && (
+        <div className="backdrop">
+          <Spinner animation="border" role="status" variant="light">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
         </div>
-      </div> */}
+      )}
       <div className="same-style account-setting d-none d-lg-block">
         <button
           className="account-setting-active"
@@ -60,42 +63,42 @@ const IconGroup = ({ iconWhiteClass }) => {
           <i className="pe-7s-user-female" />
         </button>
         <div className="account-dropdown">
-          {accessToken?
-          <ul>
-          <li onClick={()=>{
-            handleLogout()
-          }}>
-            <Link to={process.env.PUBLIC_URL + "/"}>Logout</Link>
-            
-          </li>
-          <li>
-            <Link to={process.env.PUBLIC_URL + "/orders"}>
-              Orders
-            </Link>
-          </li>
-          
-          <li>
-            <Link to={process.env.PUBLIC_URL + "/my-account"}>
-              my account
-            </Link>
-          </li>
-        </ul>
-          :
-          <ul>
-            <li>
-              <Link to={process.env.PUBLIC_URL + "/login-register"}>Login</Link>
-            </li>
-            <li>
-              <Link to={process.env.PUBLIC_URL + "/login-register"}>
-                Register
-              </Link>
-            </li>
-            {/* <li>
+          {accessToken ?
+            <ul>
+              <li onClick={() => {
+                handleLogout()
+              }}>
+                <Link to={process.env.PUBLIC_URL + window.location.pathname}>Logout</Link>
+
+              </li>
+              <li>
+                <Link to={process.env.PUBLIC_URL + "/orders"}>
+                  Orders
+                </Link>
+              </li>
+
+              <li>
+                <Link to={process.env.PUBLIC_URL + "/my-account"}>
+                  my account
+                </Link>
+              </li>
+            </ul>
+            :
+            <ul>
+              <li>
+                <Link to={process.env.PUBLIC_URL + "/login-register"}>Login</Link>
+              </li>
+              <li>
+                <Link to={process.env.PUBLIC_URL + "/login-register"}>
+                  Register
+                </Link>
+              </li>
+              {/* <li>
               <Link to={process.env.PUBLIC_URL + "/my-account"}>
                 my account
               </Link>
             </li> */}
-          </ul>}
+            </ul>}
         </div>
       </div>
       {/* <div className="same-style header-compare">

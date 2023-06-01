@@ -7,12 +7,12 @@ import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import { Form } from 'react-bootstrap';
 import { use } from "i18next";
-import { postRequestHandler } from "../../apiHandler/customApiHandler";
+import { getRequestHandler, postRequestHandler } from "../../apiHandler/customApiHandler";
 
 const Checkout = () => {
   const navigate = useNavigate();
-   let cartTotalPrice = 0;
-   let cartPriceForApi = 0;
+  let cartTotalPrice = 0;
+  let cartPriceForApi = 0;
   const [finalPrice, setFinalPrice] = useState(0);
   const [selectedOption, setSelectedOption] = useState('cod');
 
@@ -22,9 +22,10 @@ const Checkout = () => {
   let { pathname } = useLocation();
   const currency = useSelector((state) => state.currency);
   const { cartItems } = useSelector((state) => state.cart);
-    
-  
-    {cartItems.map((cartItem, key) => {
+
+
+  {
+    cartItems.map((cartItem, key) => {
       const discountedPrice = getDiscountPrice(
         cartItem.price,
         cartItem.discount
@@ -41,47 +42,71 @@ const Checkout = () => {
           finalPrice * cartItem.quantity)
         : (cartPriceForApi +=
           finalDisPrice * cartItem.quantity);
-        })}
+    })
+  }
 
-        useEffect(()=>{
-          setFinalPrice(cartPriceForApi)
-        },[])
+  useEffect(() => {
+    setFinalPrice(cartPriceForApi)
+  }, [])
 
 
-          // set cod order
-          // "products": [{"id":"cli8t3qp1000hf9t0byi7o7m9", "quantity":5}],
-          // "price": 1000,
-          // "paymentMethod": "cod"
-          
-          const products = cartItems.map((item) => ({
-            id: item.id,
-            quantity: item.quantity,
-          }));
-          
-          // const products= [{"id":`${cartItems[0].id}`, "quantity":cartItems[0].quantity}]
-          const price= finalPrice
-          const paymentMethod= selectedOption
+  // set cod order
+  // "products": [{"id":"cli8t3qp1000hf9t0byi7o7m9", "quantity":5}],
+  // "price": 1000,
+  // "paymentMethod": "cod"
 
-          console.log("qttt", products);
+  const products = cartItems.map((item) => ({
+    id: item.id,
+    quantity: item.quantity,
+  }));
+
+  // const products= [{"id":`${cartItems[0].id}`, "quantity":cartItems[0].quantity}]
+  const price = finalPrice
+  const paymentMethod = selectedOption
+
+  // handle cod order 
   async function handleCodOrder() {
- 
+
     try {
-      const response = await postRequestHandler('/order/ordercod',{products, price, paymentMethod});
+      const response = await postRequestHandler('/order/ordercod', { products, price, paymentMethod });
       // Handle the response data
       console.log("cod response", response);
-      if(response.success){
+      if (response.success) {
         navigate("/orders")
       }
- 
+
     } catch (error) {
       // Handle the error
       console.error(error);
     }
   }
 
+  // set get profile
+  async function handleAuthCheck() {
+
+    try {
+      const data = await getRequestHandler('/auth/authcheck');
+      // Handle the response data
+      console.log("auth check response", data);
+      if (data.error.code === 401) {
+        localStorage.removeItem("accessToken")
+        localStorage.removeItem("refreshToken")
+        localStorage.removeItem("user")
+        navigate("/")
+      }
+    } catch (error) {
+      // Handle the error
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    handleAuthCheck()
+  }, [])
+
   console.log("total", cartItems)
-    
-    return (
+
+  return (
     <Fragment>
       <SEO
         titleTemplate="Checkout"
@@ -225,7 +250,7 @@ const Checkout = () => {
                                 : (cartTotalPrice +=
                                   finalProductPrice * cartItem.quantity);
 
-                                 
+
                               return (
                                 <li key={key}>
                                   <span className="order-middle-left">
@@ -292,7 +317,7 @@ const Checkout = () => {
                       </Form>
                     </div>
                     <div className="place-order mt-25">
-                      <button onClick={()=>{handleCodOrder()}} className="btn-hover">Place Order</button>
+                      <button onClick={() => { handleCodOrder() }} className="btn-hover">Place Order</button>
                     </div>
                   </div>
                 </div>

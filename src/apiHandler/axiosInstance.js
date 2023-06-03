@@ -1,6 +1,8 @@
 import axios from "axios";
 import encryptData from "./utils/encryption";
 import decryptData from "./utils/decryption";
+import { errorCode } from "./errorHandler";
+import Swal from "sweetalert2";
 
 const encryption = process.env.REACT_APP_PUBLIC_ENCRYPTION || "TRUE";
 const baseURL = process.env.REACT_APP_PUBLIC_APIPOINT || "https://marpapi.techanalyticaltd.com"
@@ -52,7 +54,27 @@ caxios.interceptors.response.use(
 
     //! YOU CAN DIRECTLY HANDLE ERRORS HERE!!!
     // handleCommonErrors(error.response.data.encoded);
+    
+    // const errorCodeKeys = Object.keys(errorCode);
+    // for (const key of errorCodeKeys) {
+    //   if (parseInt(key) === error.response.data.encoded.error.code) {
+    //     const errorMessage = errorCode[key].message;
+    //     // console.log(`Error Message----------------: ${errorMessage}`);
+       
+    //     break; // Stop the loop since we found a match
+    //   }
+    // }
 
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: `${error.response.data.encoded.errMsg}`,
+      // footer: '<a href="">Why do I have this issue?</a>'
+    }).then((res)=>{
+      if(res.isConfirmed){
+        window.location.reload()
+      }
+    })
     return error.response.data.encoded;
   }
 );

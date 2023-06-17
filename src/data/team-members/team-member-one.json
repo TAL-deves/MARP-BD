@@ -1,65 +1,92 @@
 [
   {
     "id": "1",
-    "image": "https://serigrafgrosseto.com/wp-content/uploads/2020/05/FRANCO.png",
+    "image": "https://oajxusxzqqhuwzvyniyc.supabase.co/storage/v1/object/public/assets/1chairmain.png",
     "fbLink": "//www.facebook.com",
     "twitterLink": "//www.twitter.com",
     "instagramLink": "//www.instagram.com",
-    "name": "Mr.Arif",
-    "position": "Manager"
-  },
-  {
-    "id": "2",
-    "image": "https://serigrafgrosseto.com/wp-content/uploads/2021/04/cristian.jpg",
-    "fbLink": "//www.facebook.com",
-    "twitterLink": "//www.twitter.com",
-    "instagramLink": "//www.instagram.com",
-    "name": "Mr.Rofik",
-    "position": "Developer"
-  },
-  {
-    "id": "3",
-    "image": "https://serigrafgrosseto.com/wp-content/uploads/2020/05/DANI.png",
-    "fbLink": "//www.facebook.com",
-    "twitterLink": "//www.twitter.com",
-    "instagramLink": "//www.instagram.com",
-    "name": "Mr.shofik",
-    "position": "Designer"
-  },
-  {
-    "id": "4",
-    "image": "https://serigrafgrosseto.com/wp-content/uploads/2020/05/ELENA.png",
-    "fbLink": "//www.facebook.com",
-    "twitterLink": "//www.twitter.com",
-    "instagramLink": "//www.instagram.com",
-    "name": "Mr.Zarif",
+    "name": "Rebeka Sultana Bithi",
     "position": "Chairman"
   },
   {
-    "id": "3",
-    "image": "https://serigrafgrosseto.com/wp-content/uploads/2020/05/DANI.png",
+    "id": "2",
+    "image": "https://oajxusxzqqhuwzvyniyc.supabase.co/storage/v1/object/public/assets/2managingdirector.png",
     "fbLink": "//www.facebook.com",
     "twitterLink": "//www.twitter.com",
     "instagramLink": "//www.instagram.com",
-    "name": "Mr.shofik",
-    "position": "Designer"
+    "name": "Mozza, Hossain Palash",
+    "position": "Managing Director"
   },
   {
     "id": "3",
-    "image": "https://serigrafgrosseto.com/wp-content/uploads/2020/05/DANI.png",
+    "image": "https://oajxusxzqqhuwzvyniyc.supabase.co/storage/v1/object/public/assets/3director.png",
     "fbLink": "//www.facebook.com",
     "twitterLink": "//www.twitter.com",
     "instagramLink": "//www.instagram.com",
-    "name": "Mr.shofik",
-    "position": "Designer"
+    "name": "Md Rokibul Islam",
+    "position": "Director"
   },
   {
-    "id": "3",
-    "image": "https://serigrafgrosseto.com/wp-content/uploads/2020/05/DANI.png",
+    "id": "4",
+    "image": "https://oajxusxzqqhuwzvyniyc.supabase.co/storage/v1/object/public/assets/4director.png",
     "fbLink": "//www.facebook.com",
     "twitterLink": "//www.twitter.com",
     "instagramLink": "//www.instagram.com",
-    "name": "Mr.shofik",
-    "position": "Designer"
+    "name": "Nilema Sharker",
+    "position": "Director"
+  },
+  {
+    "id": "5",
+    "image": "https://oajxusxzqqhuwzvyniyc.supabase.co/storage/v1/object/public/assets/5director.png",
+    "fbLink": "//www.facebook.com",
+    "twitterLink": "//www.twitter.com",
+    "instagramLink": "//www.instagram.com",
+    "name": "Md. Al Faruk Khan",
+    "position": "Director"
+  },
+  {
+    "id": "6",
+    "image": "https://oajxusxzqqhuwzvyniyc.supabase.co/storage/v1/object/public/assets/6director.png",
+    "fbLink": "//www.facebook.com",
+    "twitterLink": "//www.twitter.com",
+    "instagramLink": "//www.instagram.com",
+    "name": "Sharmin Akter",
+    "position": "Director"
+  },
+  {
+    "id": "7",
+    "image": "https://oajxusxzqqhuwzvyniyc.supabase.co/storage/v1/object/public/assets/7director.png",
+    "fbLink": "//www.facebook.com",
+    "twitterLink": "//www.twitter.com",
+    "instagramLink": "//www.instagram.com",
+    "name": "Md. Abul Kalam Azad",
+    "position": "Director"
+  },
+  {
+    "id": "8",
+    "image": "https://oajxusxzqqhuwzvyniyc.supabase.co/storage/v1/object/public/assets/8shareholder.png",
+    "fbLink": "//www.facebook.com",
+    "twitterLink": "//www.twitter.com",
+    "instagramLink": "//www.instagram.com",
+    "name": "Asma Akter Zhilik",
+    "position": "Share Holder"
+  },
+  {
+    "id": "9",
+    "image": "https://oajxusxzqqhuwzvyniyc.supabase.co/storage/v1/object/public/assets/9director.png",
+    "fbLink": "//www.facebook.com",
+    "twitterLink": "//www.twitter.com",
+    "instagramLink": "//www.instagram.com",
+    "name": "Salim",
+    "position": "Director"
+  },
+  {
+    "id": "10",
+    "image": "https://oajxusxzqqhuwzvyniyc.supabase.co/storage/v1/object/public/assets/10director.png",
+    "fbLink": "//www.facebook.com",
+    "twitterLink": "//www.twitter.com",
+    "instagramLink": "//www.instagram.com",
+    "name": "Masuma Akter",
+    "position": "Director"
   }
 ]

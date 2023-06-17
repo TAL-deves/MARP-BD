@@ -23,9 +23,12 @@ caxios.interceptors.request.use(
         } else {
           config.data = { data: encryptData(config.data) };
         }
-      } else {
-        config.data = { data: config.data };
-      }
+      } 
+      // else {
+      //   console.log("config.data", config.data)
+      //   config.data = {data: config.data };
+      //   console.log("config.data 2", config.data)
+      // }
       
       return config;
     },

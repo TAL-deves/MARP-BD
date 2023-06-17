@@ -2,15 +2,23 @@
   {
     "id": 1,
     "title": "Natural & Healthy",
-    "subtitle": "100% Organic Fruits Collection",
-    "image": "https://st2.depositphotos.com/1013886/5744/i/450/depositphotos_57444285-Healthy-food-background.jpg",
+    "subtitle": "100% Organic Products",
+    "image": "https://oajxusxzqqhuwzvyniyc.supabase.co/storage/v1/object/public/assets/3d853fa7-d868-4f4b-ad6b-c4dc8c1e3b1f-1.jpg",
+    
     "url": "/shop-grid-standard"
   },
   {
     "id": 2,
     "title": "Natural & Healthy",
-    "subtitle": "100% Organic Veg Collection",
-    "image": "https://media.istockphoto.com/id/525985965/photo/healthy-food-background.jpg?s=612x612&w=0&k=20&c=FAB3rg2oJ1vLDx0xE9TAiNCpdht2jMcqqXbrtstZ7Y4=",
+    "subtitle": "100% Organic Products",
+    "image": "https://oajxusxzqqhuwzvyniyc.supabase.co/storage/v1/object/public/assets/6b3ccf7d-eb6e-4a36-9ecf-d480e50c268b.jpg",
+    "url": "/shop-grid-standard"
+  },
+  {
+    "id": 2,
+    "title": "Natural & Healthy",
+    "subtitle": "100% Organic Products",
+    "image": "https://oajxusxzqqhuwzvyniyc.supabase.co/storage/v1/object/public/assets/b1140db0-c753-41f5-9f30-04072812c818.jpg",
     "url": "/shop-grid-standard"
   }
 ]

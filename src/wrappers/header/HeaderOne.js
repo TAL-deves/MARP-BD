@@ -7,6 +7,7 @@ import IconGroup from "../../components/header/IconGroup";
 import MobileMenu from "../../components/header/MobileMenu";
 import HeaderTop from "../../components/header/HeaderTop";
 import { Link } from "react-router-dom";
+import logo_marp from "../../assets/Marp-logo.svg"; 
 
 const HeaderOne = ({
   layout,
@@ -56,11 +57,12 @@ const HeaderOne = ({
       >
         <div className={layout === "container-fluid" ? layout : "container"}>
           <div className="row">
-            <div className="col-xl-2 col-lg-2 col-md-6 col-4">
+            <div className="col-xl-2 col-lg-2 col-md-6 col-4 mt-0 d-flex align-items-center">
               {/* header logo */}
               {/* <Logo imageUrl="/assets/img/logo/logo.png" logoClass="logo" /> */}
               <Link to="/">
-              <h3 className="logo">MARP Bangladesh</h3>
+              {/* <h3 className="logo">MARP Bangladesh</h3> */}
+              <img height="50px" src={logo_marp} alt="" />
               </Link>
             </div>
             <div className="col-xl-8 col-lg-8 d-none d-lg-block">

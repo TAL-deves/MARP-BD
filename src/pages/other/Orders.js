@@ -28,7 +28,6 @@ function Orders() {
 
   useEffect(() => { handleGetOrders() }, [])
 
-  console.log("ordersss", orderList)
   return (
 
     <Fragment>
@@ -48,7 +47,7 @@ function Orders() {
         <Container className="mt-5 d-flex flex-column justify-content-center align-items-center">
           {orderList ?
             <div >
-              <Nav variant="tabs" defaultActiveKey="tab1">
+              {/* <Nav variant="tabs" defaultActiveKey="tab1">
                 <Nav.Item>
                   <Nav.Link eventKey="tab1" onClick={() => handleTabChange('tab1')}>
                     Orders List
@@ -64,11 +63,44 @@ function Orders() {
                     Customer Review
                   </Nav.Link>
                 </Nav.Item>
-              </Nav>
+              </Nav> */}
 
-              <Tab.Content>
+              {/* <Tab.Content>
                 <Tab.Pane eventKey="tab1" active={activeTab === 'tab1'}>
                   <div>
+                    {orderList.map((list) => {
+                      return (
+                        <>
+                          {list.CartItems.map((product)=>{
+                            
+                            console.log("cartitem details", product.Product.name)
+                            return(
+                              <>
+                                <div class="card shadow border-light mb-3" >
+                           
+                            <div class="card-body text-success">
+                              <img height="100px" width="100px" src={product.Product.productImages[0]} alt='' />
+                              <h5 class="card-title">{product.Product.name}</h5>
+                              <p class="card-text">{product.Product.shortDescription}</p>
+                              <p class="card-text">৳{product.Product.price}</p>
+                            </div>
+                          </div>
+                              </>
+                            )
+                          })}
+                          
+                        </>)
+                    })}
+                  </div>
+                </Tab.Pane>
+                <Tab.Pane eventKey="tab2" active={activeTab === 'tab2'}>
+                  Content for Tab 2
+                </Tab.Pane>
+                <Tab.Pane eventKey="tab3" active={activeTab === 'tab3'}>
+                  Content for Tab 3
+                </Tab.Pane>
+              </Tab.Content> */}
+<div>
                     {orderList.map((list) => {
                       return (
                         <>
@@ -93,15 +125,6 @@ function Orders() {
                         </>)
                     })}
                   </div>
-                </Tab.Pane>
-                <Tab.Pane eventKey="tab2" active={activeTab === 'tab2'}>
-                  Content for Tab 2
-                </Tab.Pane>
-                <Tab.Pane eventKey="tab3" active={activeTab === 'tab3'}>
-                  Content for Tab 3
-                </Tab.Pane>
-              </Tab.Content>
-
 
             </div>
             :

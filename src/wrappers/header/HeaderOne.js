@@ -7,7 +7,7 @@ import IconGroup from "../../components/header/IconGroup";
 import MobileMenu from "../../components/header/MobileMenu";
 import HeaderTop from "../../components/header/HeaderTop";
 import { Link } from "react-router-dom";
-import logo_marp from "../../assets/Marp-logo.svg"; 
+import logo_marp from "../../assets/Marp-logo.svg";
 
 const HeaderOne = ({
   layout,
@@ -37,9 +37,9 @@ const HeaderOne = ({
     <header className={clsx("header-area clearfix", headerBgClass, headerPositionClass)}>
       <div
         className={clsx(
-          "header-top-area", 
-          headerPaddingClass, top === "visible" ? "d-none d-lg-block" : "d-none", 
-          borderStyle === "fluid-border" && "border-none" 
+          "header-top-area",
+          headerPaddingClass, top === "visible" ? "d-none d-lg-block" : "d-none",
+          borderStyle === "fluid-border" && "border-none"
         )}
       >
         <div className={layout === "container-fluid" ? layout : "container"}>
@@ -50,20 +50,31 @@ const HeaderOne = ({
 
       <div
         className={clsx(
-          headerPaddingClass, 
-          "sticky-bar header-res-padding clearfix", 
+          headerPaddingClass,
+          "sticky-bar header-res-padding clearfix",
           scroll > headerTop && "stick"
         )}
       >
         <div className={layout === "container-fluid" ? layout : "container"}>
-          <div className="row">
+          <div className="row d-flex align-items-center">
             <div className="col-xl-2 col-lg-2 col-md-6 col-4 mt-0 d-flex align-items-center">
               {/* header logo */}
               {/* <Logo imageUrl="/assets/img/logo/logo.png" logoClass="logo" /> */}
               <Link to="/">
-              {/* <h3 className="logo">MARP Bangladesh</h3> */}
-              <img height="50px" src={logo_marp} alt="" />
+                <img
+                  className="d-block d-sm-none logo-image"
+                  src={logo_marp}
+                  alt="First Image"
+                  style={{ height: '35px'}}
+                />
+                <img
+                  className="d-none d-sm-block logo-image"
+                  src={logo_marp}
+                  alt="Second Image"
+                  style={{ height: '50px' }}
+                />
               </Link>
+
             </div>
             <div className="col-xl-8 col-lg-8 d-none d-lg-block">
               {/* Nav menu */}

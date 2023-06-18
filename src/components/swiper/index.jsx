@@ -17,7 +17,7 @@ const SwiperSlider = forwardRef(
         },
         ref
     ) => {
-        console.log("options", options)
+        
         const modules = options?.modules !== undefined ? options.modules : [];
         const prevClass = `prev-${navClass || "swiper-nav"}`;
         const nextClass = `next-${navClass || "swiper-nav"}`;

@@ -17,6 +17,7 @@ const HomeOrganicFood = () => {
         titleTemplate="Organic Food Home"
         description="Organic food home of MARP Bangladesh."
       />
+      
       <LayoutThree
         headerTop="visible"
         headerContainerClass="container-fluid"
@@ -64,6 +65,7 @@ const HomeOrganicFood = () => {
           subscribeBtnClass="green-subscribe"
         />
       </LayoutThree>
+    
     </Fragment>
   );
 };

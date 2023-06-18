@@ -83,12 +83,14 @@ const Root = () => {
   // store.dispatch(setProducts(products));
 
   return isRendered ? (
-    <Provider store={store}>
+    // <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+    <Provider store={store} >
       <PersistProvider>
         <App />
         {/* {store && store.data ? <App /> : null} */}
       </PersistProvider>
     </Provider>
+    // </div>
   ) : null;
 };
 

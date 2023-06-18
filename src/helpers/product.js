@@ -98,13 +98,22 @@ export const cartItemStock = (item, color, size) => {
 };
 //get products based on category
 export const getSortedProducts = (products, sortType, sortValue) => {
-  console.log("product.js page sort debug", products)
+  // console.log("product.js page sort debug", products)
   if (products && sortType && sortValue) {
+     console.log("matched", products)
     if (sortType === "category") {
+      
       return products.filter(
         product => product.category.filter(single => single === sortValue)[0]
+        
       );
     }
+    // if (sortType === "category") {
+    //   return products.filter(product => {
+    //     const category = product.category;
+    //     return Array.isArray(category) && category.includes(sortValue);
+    //   });
+    // }
     if (sortType === "tag") {
       return products.filter(
         product => product.tag.filter(single => single === sortValue)[0]

@@ -17,6 +17,7 @@ const ShopSidebar = ({ products, getSortParams, sideSpaceClass }) => {
   const uniqueColors = getIndividualColors(products);
   const uniqueSizes = getProductsIndividualSizes(products);
   const uniqueTags = getIndividualTags(products);
+  console.log("check product and cat", uniqueCategories)
 
   return (
     <div className={clsx("sidebar-style", sideSpaceClass)}>

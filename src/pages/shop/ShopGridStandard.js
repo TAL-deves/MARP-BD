@@ -23,16 +23,18 @@ const ShopGridStandard = () => {
     const { products } = useSelector((state) => (state.product)
    );
 
-    const pageLimit = 15;
-    let { pathname } = useLocation();
-
-    const getLayout = (layout) => {
-        setLayout(layout)
+   
+   const pageLimit = 15;
+   let { pathname } = useLocation();
+   
+   const getLayout = (layout) => {
+       setLayout(layout)
     }
-
+    
     const getSortParams = (sortType, sortValue) => {
         setSortType(sortType);
         setSortValue(sortValue);
+        
     }
 
     const getFilterSortParams = (sortType, sortValue) => {
@@ -47,7 +49,7 @@ const ShopGridStandard = () => {
         setSortedProducts(sortedProducts);
         setCurrentData(sortedProducts.slice(offset, offset + pageLimit));
     }, [offset, products, sortType, sortValue, filterSortType, filterSortValue ]);
-
+    console.log("getSortParams", getSortParams )
     return (
         <Fragment>
             <SEO

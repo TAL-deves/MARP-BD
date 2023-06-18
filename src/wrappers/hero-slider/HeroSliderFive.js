@@ -10,6 +10,7 @@ const params = {
   fadeEffect: {
     crossFade: true
   },
+  autoplay:true,
   modules: [EffectFade],
   loop: true,
   speed: 1000,

@@ -66,6 +66,15 @@ const LoginRegister = () => {
     } catch (error) {
       // Handle the error
       console.error(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        // text: `${error}`,
+        text: `Server Error`,
+        // footer: '<a href="">Why do I have this issue?</a>'
+      })
+      window.location.reload()
+
     }
   }
   // handle logout 

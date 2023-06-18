@@ -43,7 +43,8 @@ caxios.interceptors.request.use(
       (response) => {
         if (encryption === "TRUE") {
           response.data.encoded = JSON.parse(decryptData(response.data.encoded));
-        } else {
+        } 
+        else {
           response.data.encoded = response.data.encoded;
         }
         
@@ -58,16 +59,7 @@ caxios.interceptors.request.use(
 
     //! YOU CAN DIRECTLY HANDLE ERRORS HERE!!!
     // handleCommonErrors(error.response.data.encoded);
-    
-    // const errorCodeKeys = Object.keys(errorCode);
-    // for (const key of errorCodeKeys) {
-    //   if (parseInt(key) === error.response.data.encoded.error.code) {
-    //     const errorMessage = errorCode[key].message;
-    //     // console.log(`Error Message----------------: ${errorMessage}`);
-       
-    //     break; // Stop the loop since we found a match
-    //   }
-    // }
+   
     const navigate = useNavigate();
 
     Swal.fire({

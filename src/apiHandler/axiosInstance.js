@@ -52,16 +52,14 @@ caxios.interceptors.request.use(
     return response.data.encoded;
   },
   (error) => {
-    error.response.data.encoded =
-      encryption === "TRUE"
-        ? JSON.parse(decryptData(error.response.data.encoded))
-        : error.response.data.encoded;
+
+    
 
     //! YOU CAN DIRECTLY HANDLE ERRORS HERE!!!
     // handleCommonErrors(error.response.data.encoded);
    
-    const navigate = useNavigate();
-
+    // console.log("axios error", error.response.data.encoded.errMsg)
+    // const navigate = useNavigate();
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
@@ -69,8 +67,8 @@ caxios.interceptors.request.use(
       // footer: '<a href="">Why do I have this issue?</a>'
     }).then((res)=>{
       if(res.isConfirmed){
-        window.location.reload()
-        navigate("/")
+        // window.location.reload()
+        // navigate("/")
       }
     })
     return error.response.data.encoded;

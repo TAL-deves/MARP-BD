@@ -155,8 +155,7 @@ function Orders() {
             </>  
         ))}
         </ol>
-        </td>
-        
+        </td>       
             {order.CartItems.map((item) => 
             { 
               amount+=parseInt(item.quantity)

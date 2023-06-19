@@ -117,6 +117,8 @@ const MyAccount = () => {
       setMaritualStatus(data.data.profile.maritualStatus)
       setDOB(data.data.profile.DOB)
       setImage(data.data.profile.profilePhotoBucketURL)
+      setNomineeData(data.data.profile.nomineeData)
+      setAdditionalData(data.data.profile.additionalData)
     } catch (error) {
       // Handle the error
       console.error(error);

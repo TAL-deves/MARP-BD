@@ -18,8 +18,8 @@ function Orders() {
     try {
       const data = await getRequestHandler('/userorders/all');
       // Handle the response data
-
       setOrderList(data.data)
+      console.log("orders", data.data)
     } catch (error) {
       // Handle the error
       console.error(error);
@@ -27,7 +27,7 @@ function Orders() {
   }
 
   useEffect(() => { handleGetOrders() }, [])
-
+ 
   return (
 
     <Fragment>
@@ -101,7 +101,7 @@ function Orders() {
                 </Tab.Pane>
               </Tab.Content> */}
 <div>
-                    {orderList.map((list) => {
+                    {/* {orderList.map((list) => {
                       return (
                         <>
                           {list.CartItems.map((product)=>{
@@ -110,7 +110,6 @@ function Orders() {
                             return(
                               <>
                                 <div class="card shadow border-light mb-3" >
-                            {/* <div class="card-header">Header</div> */}
                             <div class="card-body text-success">
                               <img height="100px" width="100px" src={product.Product.productImages[0]} alt='' />
                               <h5 class="card-title">{product.Product.name}</h5>
@@ -123,7 +122,57 @@ function Orders() {
                           })}
                           
                         </>)
-                    })}
+                    })} */}
+                    <table className="table">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>order status</th>
+          <th>order number</th>
+          <th>Product</th>
+          <th>Quantity</th>
+          
+          {/* Add more table headers for each attribute you want to display */}
+        </tr>
+      </thead>
+      <tbody>
+        {orderList.map((order, index) => {
+         
+          let amount=0
+          
+          return(
+          <tr key={order.id}>
+            <td>{order.id}</td>
+            <td>{order.createdAt}</td>
+            <td>{order.orderStatus}</td>
+            <td>{order.orderNumber}</td>
+            <td>
+            <ol>
+            {order.CartItems.map((item) => (              
+            <>
+            <li>{item.Product.name}</li>           
+            </>  
+        ))}
+        </ol>
+        </td>
+        
+            {order.CartItems.map((item) => 
+            { 
+              amount+=parseInt(item.quantity)
+            }
+        )}
+        <td>{amount}</td>   
+        
+          </tr>
+          
+        )
+        
+      })
+      
+        }
+      </tbody>
+    </table>
                   </div>
 
             </div>

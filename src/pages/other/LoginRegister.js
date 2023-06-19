@@ -27,12 +27,13 @@ const LoginRegister = () => {
       if (data.success === true) {
         window.location.reload()
         console.log("reg in", data)
-        setShow(false);
       }
+      setShow(false);
 
       console.log("reg response", data);
     } catch (error) {
       // Handle the error
+      setShow(false);
       console.error(error);
     }
   }
@@ -49,22 +50,23 @@ const LoginRegister = () => {
       if (data.success === true) {
         navigate("/")
         console.log("logged in")
-        setShow(false);
       }
+      setShow(false);
 
-      else if (data.error.code === 401) {
-        setShow(false)
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: `${data.errMsg}`,
-          // footer: '<a href="">Why do I have this issue?</a>'
-        })
-      }
+      // else if (data.error.code === 401) {
+      //   setShow(false)
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Oops...',
+      //     text: `${data.errMsg}`,
+      //     // footer: '<a href="">Why do I have this issue?</a>'
+      //   })
+      // }
 
       console.log("login response", data);
     } catch (error) {
       // Handle the error
+      setShow(false);
       console.error(error);
       // Swal.fire({
       //   icon: 'error',
@@ -182,9 +184,6 @@ const LoginRegister = () => {
                                       handleLogin();
                                     }}
                                   >
-
-
-
                                     {show ? <div class="spinner-border text-warning" role="status">
                                       <span class="visually-hidden">Loading...</span>
                                     </div> : <span className="m-1">Login</span>}
@@ -227,6 +226,7 @@ const LoginRegister = () => {
                                   {show ? <div class="spinner-border text-warning" role="status">
                                     <span class="visually-hidden">Loading...</span>
                                   </div> : <span>Register</span>}
+                                  
                                 </button>
                               </div>
                             </form>

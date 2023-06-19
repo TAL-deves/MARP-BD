@@ -149,18 +149,20 @@ function Orders() {
             <td>{order.orderNumber}</td>
             <td>
             <ol>
-            {order.CartItems.map((item) => (              
+            {order.CartItems.map((item) => {
+              amount+=parseInt(item.quantity)
+              return(              
             <>
             <li>{item.Product.name}</li>           
             </>  
-        ))}
+        )})}
         </ol>
         </td>       
-            {order.CartItems.map((item) => 
+            {/* {order.CartItems.map((item) => 
             { 
               amount+=parseInt(item.quantity)
             }
-        )}
+        )} */}
         <td>{amount}</td>   
         
           </tr>

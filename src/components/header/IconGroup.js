@@ -41,13 +41,13 @@ const IconGroup = ({ iconWhiteClass }) => {
   const { wishlistItems } = useSelector((state) => state.wishlist);
   const { cartItems } = useSelector((state) => state.cart);
 
-  
+
 
 
 
   return (
     <div className={clsx("header-right-wrap", iconWhiteClass)} >
-      
+
       {show && (
         <div className="backdrop">
           <Spinner animation="border" role="status" variant="light">

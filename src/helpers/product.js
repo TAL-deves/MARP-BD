@@ -98,13 +98,16 @@ export const cartItemStock = (item, color, size) => {
 };
 //get products based on category
 export const getSortedProducts = (products, sortType, sortValue) => {
-  // console.log("product.js page sort debug", products)
+  //  console.log("product.js page sort debug", products)
   if (products && sortType && sortValue) {
-     console.log("matched", products)
+    
     if (sortType === "category") {
-      
+      console.log("matched", products.filter(
+      product => product.Category.name===sortValue)
+      )
       return products.filter(
-        product => product.category.filter(single => single === sortValue)[0]
+        product => product.Category.name===sortValue
+        // product => product.filter(single => single.Category.name === sortValue)
         
       );
     }

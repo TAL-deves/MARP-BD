@@ -17,7 +17,7 @@ const BannerFive = () => {
                       //   process.env.PUBLIC_URL +
                       //   "/assets/img/banner/banner-21.png"
                       // }
-                      alt=""
+                      alt="" 
                     />
                   </Link>
                   <div className="banner-content-3 banner-position-hm15-1">

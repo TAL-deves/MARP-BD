@@ -45,11 +45,11 @@ const HomeOrganicFood = () => {
         {/* banner */}
         <BannerFive />
         {/* countdown */}
-        <CountDownTwo
+        {/* <CountDownTwo
           spaceTopClass="pt-80"
           spaceBottomClass="pb-95"
           dateTime="November 13, 2023 12:12:00"
-        />
+        /> */}
         {/* testimonial */}
         <TestimonialOne
           spaceTopClass="pt-100"

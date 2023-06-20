@@ -185,6 +185,7 @@ const Checkout = () => {
                                 class="border" 
                                 value={country}
                                 onChange={(e) => setCountry(e.target.value)}>
+                                  <option>Select a country</option>
                                   <option value="Azerbaijan">Azerbaijan</option>
                                   <option value="Bahamas">Bahamas</option>
                                   <option value="Bangladesh">Bangladesh</option>
@@ -369,7 +370,7 @@ const Checkout = () => {
                     <div className="place-order mt-25">
                       <button 
                       onClick={() => { handleCodOrder() }} className="btn-hover"
-                      disabled={!firstName || !lastName || !companyName || !stAddressHouse || !city || !state || !postCode || !phone || !email || !country}>Place Order</button>
+                      disabled={!firstName || !lastName || !companyName || !stAddressHouse || !city || !postCode || !phone || !email || !country}>Place Order</button>
                     </div>
                   </div>
                 </div>

@@ -21,8 +21,8 @@ const MyAccount = () => {
   const [maritualStatus, setMaritualStatus] = useState("")
   const [additionalData, setAdditionalData] = useState()
   const [nomineeData, setNomineeData] = useState()
-  // const [DOB , setDOB]=useState("")
-  const [DOB, setDOB] = useState("1987-10-11T00:00:00.000Z")
+  const [DOB , setDOB]=useState("")
+  // const [DOB, setDOB] = useState("1987-10-11T00:00:00.000Z")
   const [image, setImage] = useState();
   const [newImage, setNewImage] = useState();
   const [showModal, setShowModal] = useState(false);
@@ -82,6 +82,7 @@ const MyAccount = () => {
 
   async function handleUpdateProfile() {
     setShow(true)
+    
     try {
       const data = await postRequestHandler('/user/profile', {
         fullName,
@@ -313,7 +314,10 @@ const MyAccount = () => {
                             <div className="col-lg-6 col-md-6">
                               <div className="billing-info">
                                 <label>Date of Birth</label>
-                                <input value={DOB} type="datetime-local" onChange={handleDateChange} />
+                                <input 
+                                value={DOB} 
+                                type="date" 
+                                onChange={(e) => setDOB(e.target.value)} />
                               </div>
                             </div>
                           </div>
@@ -327,7 +331,7 @@ const MyAccount = () => {
                     </Accordion.Item>
 
 
-                    <Accordion.Item eventKey="1" className="single-my-account mb-20">
+                    {/* <Accordion.Item eventKey="1" className="single-my-account mb-20">
                       <Accordion.Header className="panel-heading">
                         <span>2 .</span> Change your password
                       </Accordion.Header>
@@ -397,7 +401,7 @@ const MyAccount = () => {
                           </div>
                         </div>
                       </Accordion.Body>
-                    </Accordion.Item>
+                    </Accordion.Item> */}
                   </Accordion>
                 </div>
               </div>

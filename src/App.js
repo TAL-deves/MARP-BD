@@ -105,7 +105,7 @@ const Cart = lazy(() => import("./pages/other/Cart"));
 const Wishlist = lazy(() => import("./pages/other/Wishlist"));
 const Compare = lazy(() => import("./pages/other/Compare"));
 const Checkout = lazy(() => import("./pages/other/Checkout"));
-
+const BillingAddress = lazy(() => import("./pages/other/BillingAddress")); 
 const NotFound = lazy(() => import("./pages/other/NotFound"));
 
 const App = () => {
@@ -406,6 +406,10 @@ const App = () => {
                 path={process.env.PUBLIC_URL + "/compare"}
                 element={<Compare/>}
               />
+              <Route
+                path={process.env.PUBLIC_URL + "/billing-address"}
+                element={<BillingAddress/>}
+              /> 
               <Route
                 path={process.env.PUBLIC_URL + "/checkout"}
                 element={<Checkout/>}

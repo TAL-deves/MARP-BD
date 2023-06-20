@@ -97,7 +97,7 @@ const MenuCart = () => {
             {accessToken?
             <Link
               className="default-btn"
-              to={process.env.PUBLIC_URL + "/checkout"}
+              to={process.env.PUBLIC_URL + "/billing-address"}
             >
               checkout
             </Link>

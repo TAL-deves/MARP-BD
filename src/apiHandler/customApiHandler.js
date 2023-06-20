@@ -41,7 +41,8 @@ export const putRequestHandler = async (formData) => {
   return responseData;
 };
 
-export const deleteRequestHandler = async () => {};
+export const deleteRequestHandler = async (url) => {let responseData = await caxios.delete(url);
+  return responseData;};
 
 export const loginHandler = async (url, phoneNumber, password) => {
   let responseData = await postRequestHandler(url, {

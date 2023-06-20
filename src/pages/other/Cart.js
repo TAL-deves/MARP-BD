@@ -307,7 +307,7 @@ const Cart = () => {
                           {currency.currencySymbol + cartTotalPrice.toFixed(2)}
                         </span>
                       </h4>
-                      <Link to={process.env.PUBLIC_URL + "/checkout"}>
+                      <Link to={process.env.PUBLIC_URL + "/billing-address"}>
                         Proceed to Checkout
                       </Link>
                     </div>

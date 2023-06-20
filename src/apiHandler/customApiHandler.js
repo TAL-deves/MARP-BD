@@ -32,10 +32,10 @@ export const putRequestHandler = async (formData) => {
       }
     )
     .then((response) => {
-      responseData = JSON.parse(decryptData(response.data.encoded));
+      responseData = (response.data.encoded);
     })
     .catch((error) => {
-      responseData = JSON.parse(decryptData(error.response.data.encoded));
+      responseData = (error.response.data.encoded);
     });
 
   return responseData;

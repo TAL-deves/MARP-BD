@@ -18,11 +18,11 @@ const MyAccount = () => {
   const [age, setAge] = useState()
   const [address, setAddress] = useState("")
   const [gender, setGender] = useState("")
-  const [maritualStatus, setMaritualStatus] = useState("")
+  const [maritalStatus, setMaritalStatus] = useState("")
   const [additionalData, setAdditionalData] = useState()
   const [nomineeData, setNomineeData] = useState()
-  const [DOB , setDOB]=useState("")
-  // const [DOB, setDOB] = useState("1987-10-11T00:00:00.000Z")
+  const [dob, setDob] = useState("")
+  // const [dob, setDob] = useState("1987-10-11T00:00:00.000Z")
   const [image, setImage] = useState();
   const [newImage, setNewImage] = useState();
   const [showModal, setShowModal] = useState(false);
@@ -82,14 +82,17 @@ const MyAccount = () => {
 
   async function handleUpdateProfile() {
     setShow(true)
-    
+    const inputDate = dob;
+    const parsedDate = new Date(inputDate);
+
+    const DOB = parsedDate.toISOString();
     try {
       const data = await postRequestHandler('/user/profile', {
         fullName,
         age,
         address,
         gender,
-        maritualStatus,
+        maritalStatus,
         additionalData,
         nomineeData,
         DOB
@@ -108,6 +111,7 @@ const MyAccount = () => {
 
   async function handleGetProfile() {
     setShow(true)
+
     try {
       const data = await getRequestHandler('/user/profile');
       // Handle the response data
@@ -116,12 +120,22 @@ const MyAccount = () => {
       setAge(data.data.profile.age)
       setAddress(data.data.profile.address)
       setGender(data.data.profile.gender)
-      setMaritualStatus(data.data.profile.maritualStatus)
-      setDOB(data.data.profile.DOB)
+      setMaritalStatus(data.data.profile.maritalStatus)
+      // setDob(data.data.profile.dob)
       setImage(data.data.profile.profilePhotoBucketURL)
       setNomineeData(data.data.profile.nomineeData)
       setAdditionalData(data.data.profile.additionalData)
       setShow(false)
+
+      const inputDate = data.data.profile.DOB;
+const parsedDate = new Date(inputDate);
+
+const year = parsedDate.getFullYear();
+const month = String(parsedDate.getMonth() + 1).padStart(2, "0");
+const day = String(parsedDate.getDate()).padStart(2, "0");
+
+const convertedDate = `${year}-${month}-${day}`;
+setDob(convertedDate)
     } catch (error) {
       // Handle the error
       console.error(error);
@@ -137,7 +151,7 @@ const MyAccount = () => {
 
       let data = await putRequestHandler(formData);
       if (data.success === true) {
-        window.location.reload()
+         window.location.reload()
         setShow(false);
       }
       console.log("put request ----- ", data);
@@ -164,19 +178,19 @@ const MyAccount = () => {
   //   }
   // }
 
-  // Handle date selection
-  const handleDateChange = (event) => {
-    const selectedDate = event.target.value + ":00.000Z";
-    setDOB(selectedDate);
+  // // Handle date selection
+  // const handleDateChange = (event) => {
+  //   const selectedDate = event.target.value + ":00.000Z";
+  //   setDob(selectedDate);
 
-  };
+  // };
 
 
 
 
   return (
     <Fragment>
-       {show && (
+      {show && (
         <div className="backdrop">
           <Spinner animation="border" role="status" variant="light">
             <span className="visually-hidden">Loading...</span>
@@ -282,12 +296,13 @@ const MyAccount = () => {
                               <div className="billing-info">
                                 <label>Gender</label>
                                 {/* <input value={gender} type="text" onChange={(e) => setGender(e.target.value)} /> */}
-                                <select 
-                                style={{height:"40px"}} 
-                                name="gender" 
-                                class="border" 
-                                value={gender}
-                                onChange={(e) => setGender(e.target.value)}>
+                                <select
+                                  style={{ height: "40px" }}
+                                  name="gender"
+                                  class="border"
+                                  value={gender}
+                                  onChange={(e) => setGender(e.target.value)}>
+                                  <option>Select Gender</option>
                                   <option value="male">Male</option>
                                   <option value="female">Female</option>
                                 </select>
@@ -296,7 +311,17 @@ const MyAccount = () => {
                             <div className="col-lg-6 col-md-6">
                               <div className="billing-info">
                                 <label>Marital Status</label>
-                                <input value={maritualStatus} type="text" onChange={(e) => setMaritualStatus(e.target.value)} />
+                                <select
+                                  style={{ height: "40px" }}
+                                  name="marittal status"
+                                  class="border"
+                                  value={maritalStatus}
+                                  onChange={(e) => setMaritalStatus(e.target.value)}>
+                                  <option>Select Marrital Status</option>
+                                  <option value="single">Single</option>
+                                  <option value="married">Married</option>
+                                  <option value="divorced">Divorced</option>
+                                </select>
                               </div>
                             </div>
                             <div className="col-lg-6 col-md-6">
@@ -314,10 +339,10 @@ const MyAccount = () => {
                             <div className="col-lg-6 col-md-6">
                               <div className="billing-info">
                                 <label>Date of Birth</label>
-                                <input 
-                                value={DOB} 
-                                type="date" 
-                                onChange={(e) => setDOB(e.target.value)} />
+                                <input
+                                  value={dob}
+                                  type="date"
+                                  onChange={(e) => setDob(e.target.value)} />
                               </div>
                             </div>
                           </div>

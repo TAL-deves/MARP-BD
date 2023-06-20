@@ -5,7 +5,7 @@ import SEO from "../../components/seo";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import { Button, Modal } from 'react-bootstrap';
-
+import { Spinner } from 'react-bootstrap';
 import { getRequestHandler, patchRequestHandler, postRequestHandler, putRequestHandler } from "../../apiHandler/customApiHandler";
 import axios from "axios";
 
@@ -40,7 +40,7 @@ const MyAccount = () => {
   const handleModalClose = () => {
     setShowModal(false);
   };
-  
+
   // set get profile
 
   async function handleAuthCheck() {
@@ -49,11 +49,11 @@ const MyAccount = () => {
       const data = await getRequestHandler('/auth/authcheck');
       // Handle the response data
       console.log("auth check response", data);
-      if(data.error.code===401){
+      if (data.error.code === 401) {
         localStorage.removeItem("accessToken")
-      localStorage.removeItem("refreshToken")
-      localStorage.removeItem("user")
-      navigate("/")
+        localStorage.removeItem("refreshToken")
+        localStorage.removeItem("user")
+        navigate("/")
       }
     } catch (error) {
       // Handle the error
@@ -81,7 +81,7 @@ const MyAccount = () => {
   // set update profile
 
   async function handleUpdateProfile() {
-
+    setShow(true)
     try {
       const data = await postRequestHandler('/user/profile', {
         fullName,
@@ -95,6 +95,7 @@ const MyAccount = () => {
       });
       // Handle the response data
       console.log("new update profile response", data);
+      setShow(false)
 
     } catch (error) {
       // Handle the error
@@ -105,7 +106,7 @@ const MyAccount = () => {
   // set get profile
 
   async function handleGetProfile() {
-
+    setShow(true)
     try {
       const data = await getRequestHandler('/user/profile');
       // Handle the response data
@@ -119,12 +120,13 @@ const MyAccount = () => {
       setImage(data.data.profile.profilePhotoBucketURL)
       setNomineeData(data.data.profile.nomineeData)
       setAdditionalData(data.data.profile.additionalData)
+      setShow(false)
     } catch (error) {
       // Handle the error
       console.error(error);
     }
   }
-  
+
   // photo upload 
   async function handleUploadPhoto() {
     setShow(true);
@@ -142,7 +144,7 @@ const MyAccount = () => {
     }
 
   }
-  
+
   useEffect(() => {
     handleGetProfile()
     handleAuthCheck()
@@ -173,6 +175,13 @@ const MyAccount = () => {
 
   return (
     <Fragment>
+       {show && (
+        <div className="backdrop">
+          <Spinner animation="border" role="status" variant="light">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </div>
+      )}
       <SEO
         titleTemplate="My Account"
         description="My Account page of MARP Bangladesh"
@@ -202,7 +211,7 @@ const MyAccount = () => {
                   <div>
                     Select Image
                   </div>
-                  <input type="file" accept=".jpg,.jpeg,.png,.gif" onChange={handleChange}                  
+                  <input type="file" accept=".jpg,.jpeg,.png,.gif" onChange={handleChange}
                   />
                   {/* <div className="text-center m-2">
                     {selectedFile?
@@ -215,11 +224,11 @@ const MyAccount = () => {
                   <Button variant="secondary" onClick={handleModalClose}>
                     Close
                   </Button>
-                  
+
                   {show ? <div class="spinner-border text-warning" role="status">
-                                      <span class="visually-hidden">Loading...</span>
-                                    </div> : <Button variant="primary" onClick={handleUploadPhoto}>Upload</Button>}
-                  
+                    <span class="visually-hidden">Loading...</span>
+                  </div> : <Button variant="primary" onClick={handleUploadPhoto}>Upload</Button>}
+
                 </Modal.Footer>
               </Modal>
               {image ?
@@ -271,7 +280,16 @@ const MyAccount = () => {
                             <div className="col-lg-6 col-md-6">
                               <div className="billing-info">
                                 <label>Gender</label>
-                                <input value={gender} type="text" onChange={(e) => setGender(e.target.value)} />
+                                {/* <input value={gender} type="text" onChange={(e) => setGender(e.target.value)} /> */}
+                                <select 
+                                style={{height:"40px"}} 
+                                name="gender" 
+                                class="border" 
+                                value={gender}
+                                onChange={(e) => setGender(e.target.value)}>
+                                  <option value="male">Male</option>
+                                  <option value="female">Female</option>
+                                </select>
                               </div>
                             </div>
                             <div className="col-lg-6 col-md-6">

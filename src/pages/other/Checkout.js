@@ -16,6 +16,19 @@ const Checkout = () => {
   let cartPriceForApi = 0;
   const [finalPrice, setFinalPrice] = useState(0);
   const [selectedOption, setSelectedOption] = useState('cod');
+  const [firstName, setFirstName] =useState()
+  const [lastName, setLastName] =useState()
+  const [companyName, setCompanyName] =useState()
+  const [country, setCountry] =useState()
+  const [stAddressHouse, setStAddressHouse] =useState()
+  const [stAddressApartment, setStAddressApartment] =useState()
+  const [city, setCity] =useState()
+  const [state, setState] =useState()
+  const [postCode, setPostCode] =useState()
+  const [phone, setPhone] =useState()
+  const [email, setEmail] =useState()
+  const [notes, setNotes] =useState()
+
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
@@ -139,76 +152,100 @@ const Checkout = () => {
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>First Name</label>
-                          <input type="text" />
+                          {/* <input type="text" /> */}
+                          <input value={firstName} type="text" onChange={(e) => setFirstName(e.target.value)} />
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>Last Name</label>
-                          <input type="text" />
+                          <input value={lastName} type="text" onChange={(e) => setLastName(e.target.value)} />
                         </div>
                       </div>
                       <div className="col-lg-12">
                         <div className="billing-info mb-20">
                           <label>Company Name</label>
-                          <input type="text" />
+                          <input value={companyName} type="text" onChange={(e) => setCompanyName(e.target.value)} />
                         </div>
                       </div>
                       <div className="col-lg-12">
                         <div className="billing-select mb-20">
                           <label>Country</label>
-                          <select>
+                          {/* <select>
                             <option>Select a country</option>
                             <option>Azerbaijan</option>
                             <option>Bahamas</option>
                             <option>Bahrain</option>
                             <option>Bangladesh</option>
                             <option>Barbados</option>
-                          </select>
+                          </select> */}
+                          <select 
+                                style={{height:"40px"}} 
+                                name="gender" 
+                                class="border" 
+                                value={country}
+                                onChange={(e) => setCountry(e.target.value)}>
+                                  <option value="Azerbaijan">Azerbaijan</option>
+                                  <option value="Bahamas">Bahamas</option>
+                                  <option value="Bangladesh">Bangladesh</option>
+                                  <option value="Barbados">Barbados</option>
+                                </select>
                         </div>
                       </div>
                       <div className="col-lg-12">
                         <div className="billing-info mb-20">
                           <label>Street Address</label>
-                          <input
+                          {/* <input
                             className="billing-address"
                             placeholder="House number and street name"
                             type="text"
-                          />
-                          <input
+                          /> */}
+                          <input 
+                          value={stAddressHouse} 
+                          className="billing-address"
+                          type="text" 
+                          placeholder="House number and street name"
+                          onChange={(e) => setStAddressHouse(e.target.value)} />
+                          {/* <input
                             placeholder="Apartment, suite, unit etc."
                             type="text"
-                          />
+                          /> */}
+                          <input 
+                          value={stAddressApartment} 
+                          type="text" 
+                          placeholder="Apartment, suite, unit etc."
+                          onChange={(e) => setStAddressApartment(e.target.value)} />
+
                         </div>
                       </div>
                       <div className="col-lg-12">
                         <div className="billing-info mb-20">
                           <label>Town / City</label>
-                          <input type="text" />
+                          <input value={city} type="text" onChange={(e) => setCity(e.target.value)} />
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>State / County</label>
-                          <input type="text" />
+                          <input value={state} type="text" onChange={(e) => setState(e.target.value)} />
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>Postcode / ZIP</label>
-                          <input type="text" />
+                          <input value={postCode} type="number" onChange={(e) => setPostCode(e.target.value)} />
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>Phone</label>
-                          <input type="text" />
+                          <input value={phone} type="phone" onChange={(e) => setPhone(e.target.value)} />
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>Email Address</label>
-                          <input type="text" />
+                          <input value={email} type="email" onChange={(e) => setEmail(e.target.value)} />
                         </div>
                       </div>
                     </div>
@@ -220,8 +257,13 @@ const Checkout = () => {
                         <textarea
                           placeholder="Notes about your order, e.g. special notes for delivery. "
                           name="message"
-                          defaultValue={""}
+                          value={notes} type="email" onChange={(e) => setNotes(e.target.value)} 
                         />
+                        {/* <textarea
+                          placeholder="Notes about your order, e.g. special notes for delivery. "
+                          name="message"
+                          defaultValue={""}
+                        /> */}
                       </div>
                     </div>
                   </div>
@@ -325,7 +367,9 @@ const Checkout = () => {
                       </Form>
                     </div>
                     <div className="place-order mt-25">
-                      <button onClick={() => { handleCodOrder() }} className="btn-hover">Place Order</button>
+                      <button 
+                      onClick={() => { handleCodOrder() }} className="btn-hover"
+                      disabled={!firstName || !lastName || !companyName || !stAddressHouse || !city || !state || !postCode || !phone || !email || !country}>Place Order</button>
                     </div>
                   </div>
                 </div>

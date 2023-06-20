@@ -225,7 +225,7 @@ const Cart = () => {
 
                 <div className="row">
                   <div className="col-lg-4 col-md-6">
-                    <div className="cart-tax">
+                    {/* <div className="cart-tax">
                       <div className="title-wrap">
                         <h4 className="cart-bottom-title section-bg-gray">
                           Estimate Delivery And Tax
@@ -265,11 +265,11 @@ const Cart = () => {
                           </button>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
 
                   <div className="col-lg-4 col-md-6">
-                    <div className="discount-code-wrapper">
+                    {/* <div className="discount-code-wrapper">
                       <div className="title-wrap">
                         <h4 className="cart-bottom-title section-bg-gray">
                           Use Coupon Code
@@ -284,7 +284,7 @@ const Cart = () => {
                           </button>
                         </form>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
 
                   <div className="col-lg-4 col-md-12">

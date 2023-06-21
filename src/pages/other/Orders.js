@@ -4,12 +4,14 @@ import { getRequestHandler } from '../../apiHandler/customApiHandler';
 import { Tab, Nav, Breadcrumb, Container } from 'react-bootstrap';
 import SEO from '../../components/seo';
 import LayoutOne from '../../layouts/LayoutOne';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function Orders() {
   let { pathname } = useLocation();
   const [activeTab, setActiveTab] = useState('tab1');
-  const [orderList, setOrderList] = useState()
+  const [orderList, setOrderList] = useState();
+  const [checkOrder, setCheckOrder]= useState()
+  const navigate = useNavigate();
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
@@ -19,10 +21,11 @@ function Orders() {
       const data = await getRequestHandler('/userorders/all');
       // Handle the response data
       setOrderList(data.data)
-      console.log("orders", data.data)
+      console.log("orders", data)
     } catch (error) {
       // Handle the error
       console.error(error);
+      // navigate("/login-register")
     }
   }
 

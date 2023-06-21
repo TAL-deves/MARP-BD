@@ -23,8 +23,9 @@ function VerifyOTP() {
         if (response.success) {
           
           Swal.fire(
-            'Good job!',
+            
   'OTP Verified',
+  'Please login!',
   'success'
           ).then((res)=>{
             if(res.isConfirmed){

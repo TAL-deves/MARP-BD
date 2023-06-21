@@ -59,7 +59,7 @@ function ProductModal({ product, currency, discountedPrice, finalProductPrice, f
     setThumbsSwiper(null)
     onHide()
   }
-
+  console.log("product modal image", product)
   return (
     <Modal show={show} onHide={onCloseModal} className="product-quickview-modal-wrapper">
     <Modal.Header closeButton></Modal.Header>
@@ -69,8 +69,9 @@ function ProductModal({ product, currency, discountedPrice, finalProductPrice, f
         <div className="col-md-5 col-sm-12 col-xs-12">
           <div className="product-large-image-wrapper">
             <Swiper options={gallerySwiperParams}>
-              {product.image &&
-                product.image.map((img, i) => {
+              {product.productImages &&
+                product.productImages.map((img, i) => {
+                 
                   return (
                     <SwiperSlide key={i}>
                       <div className="single-image">

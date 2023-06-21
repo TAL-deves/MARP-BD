@@ -24,7 +24,7 @@ function BillingAddress() {
             // Handle the response data
             console.log("billing address response", response);
             if (response.success) {
-              navigate("/checkout")
+                navigate("/checkout")
             }
             setShow(false)
 
@@ -35,21 +35,21 @@ function BillingAddress() {
         }
     }
 
-     // billing get address 
-     async function handleGetBillingAddress() {
+    // billing get address 
+    async function handleGetBillingAddress() {
         setShow(true)
         try {
             const response = await getRequestHandler('/user/profile/billing');
             // Handle the response data
             console.log("billing get response", response);
             if (response.success) {
-              setFirstName(response.data.firstName)
-              setLastName(response.data.lastName)
-              setAddress(response.data.address)
-              setCountry(response.data.country)
-              setCompanyName(response.data.companyName)
-              setCity(response.data.city)
-              setZipCode(response.data.zipCode)
+                setFirstName(response.data.firstName)
+                setLastName(response.data.lastName)
+                setAddress(response.data.address)
+                setCountry(response.data.country)
+                setCompanyName(response.data.companyName)
+                setCity(response.data.city)
+                setZipCode(response.data.zipCode)
             }
             setShow(false)
 
@@ -69,7 +69,7 @@ function BillingAddress() {
             console.log("delete response bill", response)
             if (response.success) {
                 navigate("/cart")
-              }
+            }
             setShow(false)
 
         } catch (error) {
@@ -80,9 +80,9 @@ function BillingAddress() {
     }
 
 
-    useEffect(()=>{
+    useEffect(() => {
         handleGetBillingAddress()
-    },[])
+    }, [])
     return (
         <Fragment>
             {show && (
@@ -200,15 +200,22 @@ function BillingAddress() {
           }
         `}
                                     </style>
-                                    <div className="place-order mt-25">
-                                        <button
-                                            onClick={() => { handleBillingAddress() }} className="btn-hover"
-                                            disabled={!firstName || !lastName || !address || !country || !companyName || !city || !zipCode}>Submit</button>
-                                    </div>
+                                    {firstName ?
+                                        <div className="place-order mt-25">
+                                            <button
+                                                onClick={() => { navigate("/checkout") }} className="btn-hover"
+                                                >Next</button>
+                                        </div>
+                                        :
+                                        <div className="place-order mt-25">
+                                            <button
+                                                onClick={() => { handleBillingAddress() }} className="btn-hover"
+                                                disabled={!firstName || !lastName || !address || !country || !companyName || !city || !zipCode}>Submit</button>
+                                        </div>}
                                     <div className="place-order mt-25">
                                         <button
                                             onClick={() => { handleDeleteBillingAddress() }} className="btn-hover"
-                                           >Delete</button>
+                                        >Delete</button>
                                     </div>
 
                                 </div>

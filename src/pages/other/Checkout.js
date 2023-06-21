@@ -55,7 +55,7 @@ const Checkout = () => {
   }));
 
   // const products= [{"id":`${cartItems[0].id}`, "quantity":cartItems[0].quantity}]
-  const price = cartTotalPrice
+  const price = Math.ceil(cartTotalPrice)
   const paymentMethod = selectedOption
   console.log("total price", price)
   // handle cod order 
@@ -195,8 +195,8 @@ const Checkout = () => {
                           <ul>
                             <li className="order-total">Total</li>
                             <li>
-                              {currency.currencySymbol +
-                                cartTotalPrice.toFixed(2)}
+                            {currency.currencySymbol +
+                                Math.ceil(cartTotalPrice.toFixed(2))}
                             </li>
                           </ul>
                         </div>

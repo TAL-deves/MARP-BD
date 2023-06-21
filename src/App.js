@@ -105,6 +105,7 @@ const Cart = lazy(() => import("./pages/other/Cart"));
 const Wishlist = lazy(() => import("./pages/other/Wishlist"));
 const Compare = lazy(() => import("./pages/other/Compare"));
 const Checkout = lazy(() => import("./pages/other/Checkout"));
+const Verify = lazy(() => import("./pages/other/VerifyOTP"));
 const BillingAddress = lazy(() => import("./pages/other/BillingAddress")); 
 const NotFound = lazy(() => import("./pages/other/NotFound"));
 
@@ -384,6 +385,10 @@ const App = () => {
               <Route
                 path={process.env.PUBLIC_URL + "/orders"}
                 element={<Orders/>}
+              />
+              <Route
+                path={process.env.PUBLIC_URL + "/verify"}
+                element={<Verify/>}
               />
               <Route
                 path={process.env.PUBLIC_URL + "/change-password"}

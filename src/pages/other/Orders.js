@@ -126,10 +126,10 @@ function Orders() {
                     <table className="table">
       <thead>
         <tr>
-          <th>id</th>
-          <th>name</th>
-          <th>order status</th>
-          <th>order number</th>
+          <th>ID</th>
+          <th>Date</th>
+          <th>Order Status</th>
+          <th>Order Number</th>
           <th>Product</th>
           <th>Quantity</th>
           

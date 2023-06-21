@@ -18,8 +18,9 @@ const IconGroup = ({ iconWhiteClass }) => {
       const data = await logoutHandler('/auth/logout');
       // Handle the response data
       if (data.success === true) {
+        localStorage.removeItem("uid");
         window.location.reload()
-
+        
       }
       console.log("logout response", data);
     } catch (error) {

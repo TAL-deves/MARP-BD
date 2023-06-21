@@ -62,7 +62,7 @@ caxios.interceptors.request.use(
     // const navigate = useNavigate();
     Swal.fire({
       icon: 'error',
-      title: 'Oops...',
+      title: 'Error...',
       text: `${error.response.data.encoded.errMsg}`,
       // footer: '<a href="">Why do I have this issue?</a>'
     }).then((res)=>{

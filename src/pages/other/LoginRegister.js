@@ -25,11 +25,12 @@ const LoginRegister = () => {
       const data = await postRequestHandler('/auth/signup', { email, phoneNumber, password });
       // Handle the response data
       if (data.success === true) {
-        window.location.reload()
+        // window.location.reload()
         console.log("reg in", data)
+        localStorage.setItem("uid", data.data.id)
+        navigate("/verify")
       }
       setShow(false);
-
       console.log("reg response", data);
     } catch (error) {
       // Handle the error
@@ -49,7 +50,7 @@ const LoginRegister = () => {
       // Handle the response data
       if (data.success === true) {
         navigate("/")
-        console.log("logged in")
+        console.log("logged in", data)
       }
       setShow(false);
 
@@ -85,10 +86,12 @@ const LoginRegister = () => {
 
     try {
       const data = await logoutHandler('/auth/logout');
-      // Handle the response data
-      // localStorage.removeItem("accessToken")
-      // localStorage.removeItem("refreshToken")
-      // localStorage.removeItem("user")
+      
+      if (data.success === true) {
+        localStorage.removeItem("uid");
+        window.location.reload()
+        
+      }
       console.log("logout response", data);
     } catch (error) {
       // Handle the error

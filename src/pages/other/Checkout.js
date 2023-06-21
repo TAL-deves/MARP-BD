@@ -14,7 +14,7 @@ const Checkout = () => {
   const navigate = useNavigate();
   let cartTotalPrice = 0;
   let cartPriceForApi = 0;
-  const [finalPrice, setFinalPrice] = useState(0);
+  // let finalPrice=0
   const [selectedOption, setSelectedOption] = useState('cod');
 
 
@@ -27,37 +27,27 @@ const Checkout = () => {
   const currency = useSelector((state) => state.currency);
   const { cartItems } = useSelector((state) => state.cart);
 
+  {cartItems.map((cartItem, key) => {
+    
+    const discountedPrice = getDiscountPrice(
+      cartItem.price,
+      cartItem.discount
+    );
+    const finalProductPrice = (
+      cartItem.price * currency.currencyRate
+    ).toFixed(2);
+    const finalDiscountedPrice = (
+      discountedPrice * currency.currencyRate
+    ).toFixed(2);
 
-  {
-    cartItems.map((cartItem, key) => {
-      const discountedPrice = getDiscountPrice(
-        cartItem.price,
-        cartItem.discount
-      );
-      const finalPrice = (
-        cartItem.price * currency.currencyRate
-      ).toFixed(2);
-      const finalDisPrice = (
-        discountedPrice * currency.currencyRate
-      ).toFixed(2);
-
-      discountedPrice != null
-        ? (cartPriceForApi +=
-          finalPrice * cartItem.quantity)
-        : (cartPriceForApi +=
-          finalDisPrice * cartItem.quantity);
-    })
-  }
-
-  useEffect(() => {
-    setFinalPrice(cartPriceForApi)
-  }, [])
-
-
-  // set cod order
-  // "products": [{"id":"cli8t3qp1000hf9t0byi7o7m9", "quantity":5}],
-  // "price": 1000,
-  // "paymentMethod": "cod"
+    discountedPrice != null
+      ? (cartTotalPrice +=
+        finalDiscountedPrice * cartItem.quantity)
+      : (cartTotalPrice +=
+        finalProductPrice * cartItem.quantity);
+        
+  })}
+  
 
   const products = cartItems.map((item) => ({
     id: item.id,
@@ -65,9 +55,9 @@ const Checkout = () => {
   }));
 
   // const products= [{"id":`${cartItems[0].id}`, "quantity":cartItems[0].quantity}]
-  const price = finalPrice
+  const price = cartTotalPrice
   const paymentMethod = selectedOption
-
+  console.log("total price", price)
   // handle cod order 
   async function handleCodOrder() {
     setShow(true)

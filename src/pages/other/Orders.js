@@ -52,7 +52,7 @@ function Orders() {
             { label: "Order", path: process.env.PUBLIC_URL + pathname }
           ]}
         />
-       {checkOrder?
+       
         <Container className="mt-5 d-flex flex-column justify-content-center align-items-center">
           {orderList ?
             <div >
@@ -121,13 +121,7 @@ function Orders() {
               </div>
             </div>}
         </Container>
-        :
-        <Container className="mt-5 d-flex flex-column justify-content-center align-items-center">
-          <div style={{height:"40vh"}}>
-            <p>No orders yet</p>
-          </div>
-        </Container>          
-        }
+        
       </LayoutOne>
     </Fragment>
 

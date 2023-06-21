@@ -8,6 +8,7 @@ import { Button, Modal } from 'react-bootstrap';
 import { Spinner } from 'react-bootstrap';
 import { getRequestHandler, patchRequestHandler, postRequestHandler, putRequestHandler } from "../../apiHandler/customApiHandler";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const MyAccount = () => {
   const navigate = useNavigate();
@@ -110,9 +111,9 @@ const MyAccount = () => {
   // set get profile
 
   async function handleGetProfile() {
-    
+
     try {
-      
+
       const data = await getRequestHandler('/user/profile');
       // Handle the response data
       console.log("get profile response", data.data.email);
@@ -127,14 +128,14 @@ const MyAccount = () => {
       setAdditionalData(data.data.profile.additionalData)
 
       const inputDate = data.data.profile.DOB;
-const parsedDate = new Date(inputDate);
+      const parsedDate = new Date(inputDate);
 
-const year = parsedDate.getFullYear();
-const month = String(parsedDate.getMonth() + 1).padStart(2, "0");
-const day = String(parsedDate.getDate()).padStart(2, "0");
+      const year = parsedDate.getFullYear();
+      const month = String(parsedDate.getMonth() + 1).padStart(2, "0");
+      const day = String(parsedDate.getDate()).padStart(2, "0");
 
-const convertedDate = `${year}-${month}-${day}`;
-setDob(convertedDate)
+      const convertedDate = `${year}-${month}-${day}`;
+      setDob(convertedDate)
     } catch (error) {
       // Handle the error
       console.error(error);
@@ -150,7 +151,7 @@ setDob(convertedDate)
 
       let data = await putRequestHandler(formData);
       if (data.success === true) {
-         window.location.reload()
+        window.location.reload()
         setShow(false);
       }
       console.log("put request ----- ", data);
@@ -345,11 +346,27 @@ setDob(convertedDate)
                               </div>
                             </div>
                           </div>
-                          <div className="billing-back-btn">
-                            <div className="billing-btn">
-                              <button onClick={() => { handleUpdateProfile() }}>Continue</button>
+                          {!fullName || !age || !address || !gender || !maritalStatus || !nomineeData || !additionalData || !dob ?
+                            <div className="billing-back-btn">
+                              <div className="billing-btn">
+                                <button
+                                  onClick={()=>{Swal.fire(
+                                    'Error!',
+                                    'Please fill all the information',
+                                    'error'
+                                  )}}
+                                >Continue</button>
+                              </div>
                             </div>
-                          </div>
+                            :
+                            <div className="billing-back-btn">
+                              <div className="billing-btn">
+                                <button
+                                  onClick={() => { handleUpdateProfile() }}
+                                >Continue</button>
+                              </div>
+                            </div>
+                          }
                         </div>
                       </Accordion.Body>
                     </Accordion.Item>

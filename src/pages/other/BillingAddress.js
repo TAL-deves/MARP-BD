@@ -25,7 +25,7 @@ function BillingAddress() {
             // Handle the response data
             console.log("billing address response", response);
             if (response.success) {
-                // navigate("/checkout")
+                 navigate("/checkout")
             }
             setShow(false)
 

@@ -110,12 +110,12 @@ const MyAccount = () => {
   // set get profile
 
   async function handleGetProfile() {
-    setShow(true)
-
+    
     try {
+      
       const data = await getRequestHandler('/user/profile');
       // Handle the response data
-      console.log("get profile response", data);
+      console.log("get profile response", data.data.email);
       setFullName(data.data.profile.fullName)
       setAge(data.data.profile.age)
       setAddress(data.data.profile.address)
@@ -125,7 +125,6 @@ const MyAccount = () => {
       setImage(data.data.profile.profilePhotoBucketURL)
       setNomineeData(data.data.profile.nomineeData)
       setAdditionalData(data.data.profile.additionalData)
-      setShow(false)
 
       const inputDate = data.data.profile.DOB;
 const parsedDate = new Date(inputDate);

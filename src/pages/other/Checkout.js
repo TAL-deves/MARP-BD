@@ -57,7 +57,7 @@ const Checkout = () => {
   // const products= [{"id":`${cartItems[0].id}`, "quantity":cartItems[0].quantity}]
   const price = Math.ceil(cartTotalPrice)
   const paymentMethod = selectedOption
-  console.log("total price", price)
+
   // handle cod order 
   async function handleCodOrder() {
     setShow(true)
@@ -162,7 +162,7 @@ const Checkout = () => {
                                 : (cartTotalPrice +=
                                   finalProductPrice * cartItem.quantity);
 
-
+                               console.log("total price",cartItem)
                               return (
                                 <li key={key}>
                                   <span className="order-middle-left">
@@ -195,8 +195,10 @@ const Checkout = () => {
                           <ul>
                             <li className="order-total">Total</li>
                             <li>
-                            {currency.currencySymbol +
-                                Math.ceil(cartTotalPrice.toFixed(2))}
+                            {/* {currency.currencySymbol +
+                                Math.ceil(cartTotalPrice.toFixed(2))} */}
+                               {/* { Math.ceil(cartTotalPrice)} */}
+                               ৳{price}
                             </li>
                           </ul>
                         </div>

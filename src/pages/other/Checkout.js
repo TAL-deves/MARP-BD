@@ -79,7 +79,7 @@ const Checkout = () => {
 
 
 
-  // set get profile
+  // set auth check
   async function handleAuthCheck() {
 
     try {

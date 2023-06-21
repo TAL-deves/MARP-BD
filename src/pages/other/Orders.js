@@ -15,6 +15,24 @@ function Orders() {
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
+    // set auth check
+    async function handleAuthCheck() {
+
+      try {
+        const data = await getRequestHandler('/auth/authcheck');
+        // Handle the response data
+        console.log("auth check response", data);
+        if (data.error.code === 401) {
+          localStorage.removeItem("accessToken")
+          localStorage.removeItem("refreshToken")
+          localStorage.removeItem("user")
+          navigate("/")
+        }
+      } catch (error) {
+        // Handle the error
+        console.error(error);
+      }
+    }
   // handle orders 
   async function handleGetOrders() {
     try {
@@ -35,7 +53,11 @@ function Orders() {
     }
   }
 
-  useEffect(() => { handleGetOrders() }, [])
+  useEffect(() => { 
+    handleAuthCheck()
+    handleGetOrders()
+
+   }, [])
 
   return (
 

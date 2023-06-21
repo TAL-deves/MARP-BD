@@ -14,6 +14,7 @@ function BillingAddress() {
     const [country, setCountry] = useState()
     const [zipCode, setZipCode] = useState()
     const [show, setShow] = useState(false)
+    const [gotData, setGotData] =useState()
     const navigate = useNavigate();
     let { pathname } = useLocation();
     // billing address 
@@ -24,7 +25,7 @@ function BillingAddress() {
             // Handle the response data
             console.log("billing address response", response);
             if (response.success) {
-                navigate("/checkout")
+                // navigate("/checkout")
             }
             setShow(false)
 
@@ -50,6 +51,7 @@ function BillingAddress() {
                 setCompanyName(response.data.companyName)
                 setCity(response.data.city)
                 setZipCode(response.data.zipCode)
+                setGotData(true)
             }
             setShow(false)
 
@@ -200,7 +202,7 @@ function BillingAddress() {
           }
         `}
                                     </style>
-                                    {firstName ?
+                                    {gotData ?
                                         <div className="place-order mt-25">
                                             <button
                                                 onClick={() => { navigate("/checkout") }} className="btn-hover"

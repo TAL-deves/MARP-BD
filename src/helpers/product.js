@@ -29,7 +29,7 @@
 
 // get products
 export const getProducts = (products, category, type, limit) => {
-  // console.log("efkuhk",products)
+
  const finalProducts = category
    ? products.filter(
        product => product.Category
@@ -102,26 +102,27 @@ export const getSortedProducts = (products, sortType, sortValue) => {
   if (products && sortType && sortValue) {
     
     if (sortType === "category") {
-      console.log("matched", products.filter(
-      product => product.Category.name===sortValue)
-      )
+      // console.log("matched", products.filter(
+      // product => product.Category.name===sortValue)
+      // )
       return products.filter(
         product => product.Category.name===sortValue
         // product => product.filter(single => single.Category.name === sortValue)
         
       );
     }
-    // if (sortType === "category") {
-    //   return products.filter(product => {
-    //     const category = product.category;
-    //     return Array.isArray(category) && category.includes(sortValue);
-    //   });
-    // }
+    
     if (sortType === "tag") {
+      // console.log("matched sub", products.filter(
+      // product => product.Subcategory.name===sortValue)
+      // )
       return products.filter(
-        product => product.tag.filter(single => single === sortValue)[0]
+        product => product.Subcategory.name===sortValue
+        // product => product.filter(single => single.Category.name === sortValue)
+        
       );
     }
+
     if (sortType === "color") {
       return products.filter(
         product =>
@@ -169,13 +170,12 @@ const getIndividualItemArray = array => {
 // get individual categories
 export const getIndividualCategories = products => {
   let productCategories = [];
-  console.log("products from helper page", products)
+  // console.log("products from helper page", products)
   products &&
     products.map(product => {
       return (
-        // product.Category
         productCategories.push(product.Category.name)
-        
+        // product.Category
         //   &&
         // product.Category.map(single => {
         //   return productCategories.push(single);
@@ -192,10 +192,11 @@ export const getIndividualTags = products => {
   products &&
     products.map(product => {
       return (
-        product.tag &&
-        product.tag.map(single => {
-          return productTags.push(single);
-        })
+        // product.tag &&
+        // product.tag.map(single => {
+        //   return productTags.push(single);
+        // })
+        productTags.push(product.Subcategory.name)
       );
     });
   const individualProductTags = getIndividualItemArray(productTags);

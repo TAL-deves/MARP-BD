@@ -59,7 +59,7 @@ function ProductModal({ product, currency, discountedPrice, finalProductPrice, f
     setThumbsSwiper(null)
     onHide()
   }
-  console.log("product modal image", product)
+  // console.log("product modal image", product)
   return (
     <Modal show={show} onHide={onCloseModal} className="product-quickview-modal-wrapper">
     <Modal.Header closeButton></Modal.Header>

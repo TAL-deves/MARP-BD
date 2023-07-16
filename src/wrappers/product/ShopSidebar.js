@@ -16,9 +16,9 @@ const ShopSidebar = ({ products, getSortParams, sideSpaceClass }) => {
   const uniqueCategories = getIndividualCategories(products);
   const uniqueColors = getIndividualColors(products);
   const uniqueSizes = getProductsIndividualSizes(products);
-  const uniqueTags = getIndividualTags(products);
-  console.log("check product and cat", uniqueCategories)
-
+  const uniqueSubcategories = getIndividualTags(products);
+  // console.log("check product and cat", products)
+  // console.log("getSortParams", getSortParams )
   return (
     <div className={clsx("sidebar-style", sideSpaceClass)}>
       {/* shop search */}
@@ -27,6 +27,8 @@ const ShopSidebar = ({ products, getSortParams, sideSpaceClass }) => {
       {/* filter by categories */}
       <ShopCategories
         categories={uniqueCategories}
+        product={products}
+        uniqueSubcategories={uniqueSubcategories}
         getSortParams={getSortParams}
       />
 
@@ -37,7 +39,7 @@ const ShopSidebar = ({ products, getSortParams, sideSpaceClass }) => {
       {/* <ShopSize sizes={uniqueSizes} getSortParams={getSortParams} /> */}
 
       {/* filter by tag */}
-      {/* <ShopTag tags={uniqueTags} getSortParams={getSortParams} /> */}
+      <ShopTag tags={uniqueSubcategories} getSortParams={getSortParams} />
     </div>
   );
 };

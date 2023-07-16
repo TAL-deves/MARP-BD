@@ -2,8 +2,9 @@ import PropTypes from "prop-types";
 
 import { setActiveSort } from "../../helpers/product";
 
-const ShopCategories = ({ categories, getSortParams }) => {
-  console.log("getSortParams",setActiveSort)
+const ShopCategories = ({ categories,product , uniqueSubcategories, getSortParams }) => {
+  // console.log("categories",categories)
+  // console.log("subcategories",uniqueSubcategories)
   return (
     <div className="sidebar-widget">
       <h4 className="pro-sidebar-title">Categories </h4>
@@ -23,8 +24,8 @@ const ShopCategories = ({ categories, getSortParams }) => {
               </div>
             </li>
             {categories.map((category, key) => {
-              
-              return (
+               
+              return (<>
                 <li key={key}>
                   <div className="sidebar-widget-list-left">
                     <button
@@ -38,6 +39,7 @@ const ShopCategories = ({ categories, getSortParams }) => {
                     </button>
                   </div>
                 </li>
+                </>
               );
             })}
           </ul>

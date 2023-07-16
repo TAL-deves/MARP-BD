@@ -49,7 +49,7 @@ const ShopGridStandard = () => {
         setSortedProducts(sortedProducts);
         setCurrentData(sortedProducts.slice(offset, offset + pageLimit));
     }, [offset, products, sortType, sortValue, filterSortType, filterSortValue ]);
-    console.log("getSortParams", getSortParams )
+    console.log("products", products )
     return (
         <Fragment>
             <SEO

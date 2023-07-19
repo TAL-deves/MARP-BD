@@ -145,7 +145,7 @@ const LoginRegister = () => {
                           <div className="login-register-form">
                             <form>
                               <input
-                                type="number"
+                                type="tel"
                                 // name="phone"
                                 placeholder="Phone Number"
                                 onChange={(e) => setPhoneNumber(e.target.value)}
@@ -208,7 +208,7 @@ const LoginRegister = () => {
                                 onChange={(e) => setEmail(e.target.value)}
                               />
                               <input
-                                type="number"
+                                type="tel"
                                 // name="phone"
                                 placeholder="Phone Number"
                                 onChange={(e) => setPhoneNumber(e.target.value)}

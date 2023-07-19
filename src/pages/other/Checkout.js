@@ -217,7 +217,7 @@ const Checkout = () => {
                           checked={selectedOption === 'cod'}
                           onChange={handleOptionChange}
                         />
-                        <Form.Check
+                        {/* <Form.Check
                           type="radio"
                           id="radio2"
                           label="Pay Now"
@@ -226,7 +226,7 @@ const Checkout = () => {
                           className="custom-radio"
                           checked={selectedOption === 'pNow'}
                           onChange={handleOptionChange}
-                        />
+                        /> */}
 
                       </Form>
                     </div>

@@ -1,10 +1,13 @@
+import React, {useEffect, useState} from 'react'
 import PropTypes from "prop-types";
+import { getRequestHandler } from '../../apiHandler/customApiHandler';
 
 import { setActiveSort } from "../../helpers/product";
 
 const ShopCategories = ({ categories,product , uniqueSubcategories, getSortParams }) => {
   // console.log("categories",categories)
   // console.log("subcategories",uniqueSubcategories)
+  const [subCategories, setSubcategories]= useState([])
   return (
     <div className="sidebar-widget">
       <h4 className="pro-sidebar-title">Categories </h4>
@@ -24,7 +27,7 @@ const ShopCategories = ({ categories,product , uniqueSubcategories, getSortParam
               </div>
             </li>
             {categories.map((category, key) => {
-               
+              
               return (<>
                 <li key={key}>
                   <div className="sidebar-widget-list-left">
@@ -39,6 +42,7 @@ const ShopCategories = ({ categories,product , uniqueSubcategories, getSortParam
                     </button>
                   </div>
                 </li>
+                {/* {subCategories} */}
                 </>
               );
             })}

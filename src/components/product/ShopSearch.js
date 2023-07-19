@@ -1,6 +1,6 @@
 
 
-const ShopSearch = () => {
+const ShopSearch = ({ product, getSortParams }) => {
   return (
     <div className="sidebar-widget">
       <h4 className="pro-sidebar-title">Search </h4>
